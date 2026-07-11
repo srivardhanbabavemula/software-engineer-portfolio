@@ -15,7 +15,7 @@
 .sticky {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: var(--section-h);
   overflow: hidden;
   background: #080808;
   display: flex;
@@ -780,7 +780,8 @@
     flex: 1;
     justify-content: flex-start;
     gap: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 0 1.25rem 0.5rem;
   }
 

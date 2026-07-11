@@ -15,9 +15,21 @@ import CertificationsSection from '@/components/sections/CertificationsSection'
 import PublicationsFooterSection from '@/components/sections/PublicationsFooterSection'
 import ScreenLoader from '@/components/sections/ScreenLoader'
 import { TOTAL_SNAPS } from '@/lib/sections'
-import { getScrollTopForIdx, getIdxFromScrollTop, getViewportHeight } from '@/lib/scrollSnap'
+import { getScrollTopForIdx, getIdxFromScrollTop } from '@/lib/scrollSnap'
 
 const TOTAL = TOTAL_SNAPS
+
+function findScrollableAncestor(node, root) {
+  let el = node
+  while (el && el !== root) {
+    const { overflowY } = window.getComputedStyle(el)
+    if ((overflowY === 'auto' || overflowY === 'scroll') && el.scrollHeight > el.clientHeight + 4) {
+      return el
+    }
+    el = el.parentElement
+  }
+  return null
+}
 
 export default function Home() {
   const mainRef        = useRef(null)
@@ -25,6 +37,7 @@ export default function Home() {
   const busyRef        = useRef(false)
   const tweenRef       = useRef(null)
   const loopOverlayRef = useRef(null)
+  const touchTargetRef = useRef(null)
   const [showLoader, setShowLoader] = useState(true)
 
   useEffect(() => {
@@ -93,10 +106,28 @@ export default function Home() {
     }
 
     let touchY = 0
-    function onTouchStart(e) { touchY = e.touches[0].clientY }
+    const touchThreshold = window.matchMedia('(max-width: 767px)').matches ? 52 : 40
+
+    function onTouchStart(e) {
+      touchY = e.touches[0].clientY
+      touchTargetRef.current = e.target
+    }
+
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40 || busyRef.current) return
+      if (Math.abs(dy) < touchThreshold || busyRef.current) return
+
+      const scrollable = touchTargetRef.current
+        ? findScrollableAncestor(touchTargetRef.current, el)
+        : null
+
+      if (scrollable) {
+        const atTop    = scrollable.scrollTop <= 2
+        const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 2
+        if (dy > 0 && !atBottom) return
+        if (dy < 0 && !atTop) return
+      }
+
       const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 8
       const atTop    = el.scrollTop < 8
       if (dy > 0 && atBottom) { fadeLoop(0, 0); return }
@@ -155,7 +186,7 @@ export default function Home() {
       />
 
       <Navbar />
-      <main ref={mainRef} style={{ height: '100vh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
+      <main ref={mainRef} className="snapScroller">
         <div>
           <VideoIntro />
           <HeroSection />

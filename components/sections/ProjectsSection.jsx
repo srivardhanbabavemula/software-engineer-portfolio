@@ -1,25 +1,36 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/ProjectsSection.module.css'
 
 const PROJECTS = profile.projects
+const DESKTOP_MQ = '(min-width: 1024px)'
 
 export default function ProjectsSection() {
   const sectionRef  = useRef(null)
   const trackRef    = useRef(null)
+  const slideRefs   = useRef([])
   const bgRefs      = useRef([])
   const contentRefs = useRef([])
   const visualRefs  = useRef([])
   const counterRef  = useRef(null)
   const progressRef = useRef(null)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia(DESKTOP_MQ)
+    const sync = () => setIsDesktop(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
-    if (!section || window.innerWidth < 768) return
+    if (!section || !isDesktop) return
 
     function onMove(e) {
       const r = section.getBoundingClientRect()
@@ -39,7 +50,7 @@ export default function ProjectsSection() {
 
     section.addEventListener('mousemove', onMove)
     return () => section.removeEventListener('mousemove', onMove)
-  }, [])
+  }, [isDesktop])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -51,74 +62,112 @@ export default function ProjectsSection() {
     const n = PROJECTS.length
     contentRefs.current = contentRefs.current.slice(0, n)
     visualRefs.current  = visualRefs.current.slice(0, n)
+    slideRefs.current   = slideRefs.current.slice(0, n)
 
-    contentRefs.current.forEach((el, i) => {
-      if (el && i > 0) gsap.set(el, { opacity: 0, y: 24 })
-    })
-    visualRefs.current.forEach((el, i) => {
-      if (el && i > 0) gsap.set(el, { opacity: 0, scale: 0.96 })
-    })
+    let tl = null
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        scroller,
-        start: 'top top',
-        end: () => `+=${(n - 1) * window.innerHeight}`,
-        scrub: 0.35,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const activeIdx = Math.round(self.progress * (n - 1))
-          if (progressRef.current) {
-            gsap.set(progressRef.current, {
-              scaleX: self.progress, transformOrigin: 'left center', overwrite: true,
-            })
-          }
-          if (counterRef.current) counterRef.current.textContent = `0${activeIdx + 1}`
+    const updateUI = (progress) => {
+      const activeIdx = Math.round(progress * (n - 1))
+      if (progressRef.current) {
+        gsap.set(progressRef.current, {
+          scaleX: progress, transformOrigin: 'left center', overwrite: true,
+        })
+      }
+      if (counterRef.current) counterRef.current.textContent = `0${activeIdx + 1}`
+    }
+
+    if (isDesktop) {
+      contentRefs.current.forEach((el, i) => {
+        if (el && i > 0) gsap.set(el, { opacity: 0, y: 24 })
+      })
+      visualRefs.current.forEach((el, i) => {
+        if (el && i > 0) gsap.set(el, { opacity: 0, scale: 0.96 })
+      })
+
+      tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          scroller,
+          start: 'top top',
+          end: () => `+=${(n - 1) * (document.documentElement.clientHeight || window.innerHeight)}`,
+          scrub: 0.35,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => updateUI(self.progress),
         },
-      },
-    })
+      })
 
-    tl.to(track, {
-      xPercent: -((n - 1) / n * 100),
-      ease: 'none',
-      duration: n - 1,
-    }, 0)
+      tl.to(track, {
+        xPercent: -((n - 1) / n * 100),
+        ease: 'none',
+        duration: n - 1,
+      }, 0)
 
-    for (let i = 0; i < n - 1; i++) {
-      const curr  = contentRefs.current[i]
-      const next  = contentRefs.current[i + 1]
-      const nextV = visualRefs.current[i + 1]
+      for (let i = 0; i < n - 1; i++) {
+        const curr  = contentRefs.current[i]
+        const next  = contentRefs.current[i + 1]
+        const nextV = visualRefs.current[i + 1]
 
-      if (curr) {
-        tl.to(curr, { opacity: 0, y: -24, duration: 0.2, ease: 'power2.in' }, i + 0.3)
-      }
-      if (visualRefs.current[i]) {
-        tl.to(visualRefs.current[i], { opacity: 0, scale: 0.98, duration: 0.2, ease: 'power2.in' }, i + 0.3)
-      }
-
-      if (nextV) {
-        tl.fromTo(nextV, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.55, ease: 'power2.out' }, i + 0.35)
-      }
-
-      if (next) {
-        tl.set(next, { opacity: 1, y: 0 }, i + 0.42)
-        const title = next.querySelector(`.${styles.title}`)
-        const sub   = next.querySelector(`.${styles.subtitle}`)
-        const desc  = next.querySelector(`.${styles.desc}`)
-        const ctx   = next.querySelector(`.${styles.context}`)
-        const tags  = next.querySelectorAll(`.${styles.tag}`)
-        const btn   = next.querySelector(`.${styles.liveBtn}`)
-
-        if (title) tl.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: 'expo.out' }, i + 0.44)
-        if (sub)   tl.fromTo(sub,   { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' }, i + 0.5)
-        if (desc)  tl.fromTo(desc,  { y: 8, opacity: 0 },  { y: 0, opacity: 1, duration: 0.32, ease: 'power2.out' }, i + 0.54)
-        if (ctx)   tl.fromTo(ctx,   { y: 8, opacity: 0 },  { y: 0, opacity: 1, duration: 0.32, ease: 'power2.out' }, i + 0.58)
-        if (tags.length) {
-          tl.fromTo(tags, { y: 6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22, ease: 'power2.out', stagger: 0.03 }, i + 0.62)
+        if (curr) {
+          tl.to(curr, { opacity: 0, y: -24, duration: 0.2, ease: 'power2.in' }, i + 0.3)
         }
-        if (btn) tl.fromTo(btn, { y: 6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' }, i + 0.68)
+        if (visualRefs.current[i]) {
+          tl.to(visualRefs.current[i], { opacity: 0, scale: 0.98, duration: 0.2, ease: 'power2.in' }, i + 0.3)
+        }
+
+        if (nextV) {
+          tl.fromTo(nextV, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.55, ease: 'power2.out' }, i + 0.35)
+        }
+
+        if (next) {
+          tl.set(next, { opacity: 1, y: 0 }, i + 0.42)
+          const title = next.querySelector(`.${styles.title}`)
+          const sub   = next.querySelector(`.${styles.subtitle}`)
+          const desc  = next.querySelector(`.${styles.desc}`)
+          const ctx   = next.querySelector(`.${styles.context}`)
+          const tags  = next.querySelectorAll(`.${styles.tag}`)
+          const btn   = next.querySelector(`.${styles.liveBtn}`)
+
+          if (title) tl.fromTo(title, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: 'expo.out' }, i + 0.44)
+          if (sub)   tl.fromTo(sub,   { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' }, i + 0.5)
+          if (desc)  tl.fromTo(desc,  { y: 8, opacity: 0 },  { y: 0, opacity: 1, duration: 0.32, ease: 'power2.out' }, i + 0.54)
+          if (ctx)   tl.fromTo(ctx,   { y: 8, opacity: 0 },  { y: 0, opacity: 1, duration: 0.32, ease: 'power2.out' }, i + 0.58)
+          if (tags.length) {
+            tl.fromTo(tags, { y: 6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22, ease: 'power2.out', stagger: 0.03 }, i + 0.62)
+          }
+          if (btn) tl.fromTo(btn, { y: 6, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' }, i + 0.68)
+        }
       }
+    } else {
+      slideRefs.current.forEach((slide, i) => {
+        if (!slide) return
+        gsap.set(slide, {
+          autoAlpha: i === 0 ? 1 : 0,
+          pointerEvents: i === 0 ? 'auto' : 'none',
+        })
+      })
+
+      tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          scroller,
+          start: 'top top',
+          end: () => `+=${(n - 1) * (document.documentElement.clientHeight || window.innerHeight)}`,
+          scrub: 0.2,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const activeIdx = Math.round(self.progress * (n - 1))
+            updateUI(self.progress)
+            slideRefs.current.forEach((slide, i) => {
+              if (!slide) return
+              const on = i === activeIdx
+              gsap.set(slide, {
+                autoAlpha: on ? 1 : 0,
+                pointerEvents: on ? 'auto' : 'none',
+              })
+            })
+          },
+        },
+      })
     }
 
     const refresh = () => ScrollTrigger.refresh()
@@ -131,13 +180,22 @@ export default function ProjectsSection() {
       clearTimeout(t)
       window.removeEventListener('load', onLoad)
       window.removeEventListener('resize', refresh)
-      tl.scrollTrigger?.kill()
-      tl.kill()
+      tl?.scrollTrigger?.kill()
+      tl?.kill()
+      gsap.set(track, { clearProps: 'transform' })
+      slideRefs.current.forEach(slide => slide && gsap.set(slide, { clearProps: 'opacity,visibility,pointerEvents' }))
     }
-  }, [])
+  }, [isDesktop])
 
   return (
-    <div className={styles.wrapper} style={{ height: `${PROJECTS.length * 100}vh` }} data-snap-anchor="projects">
+    <div
+      className={styles.wrapper}
+      style={{
+        height: `${PROJECTS.length * 100}vh`,
+        ['--project-count']: PROJECTS.length,
+      }}
+      data-snap-anchor="projects"
+    >
       <section ref={sectionRef} className={styles.section}>
 
         <div className={styles.topBar}>
@@ -151,11 +209,15 @@ export default function ProjectsSection() {
 
         <div
           ref={trackRef}
-          className={styles.track}
-          style={{ width: `${PROJECTS.length * 100}vw` }}
+          className={`${styles.track} ${isDesktop ? styles.trackDesktop : styles.trackStacked}`}
+          style={isDesktop ? { width: `${PROJECTS.length * 100}vw` } : undefined}
         >
           {PROJECTS.map((proj, i) => (
-            <div key={proj.id} className={styles.slide}>
+            <div
+              key={proj.id}
+              ref={el => { slideRefs.current[i] = el }}
+              className={styles.slide}
+            >
               {proj.bgImage && (
                 <div className={styles.slideBg} aria-hidden>
                   <div ref={el => { bgRefs.current[i] = el }} className={styles.slideBgInner}>
@@ -213,7 +275,7 @@ export default function ProjectsSection() {
                   fill
                   quality={95}
                   className={styles.visualImg}
-                  sizes="(min-width: 768px) 45vw, 90vw"
+                  sizes="(min-width: 1024px) 45vw, 92vw"
                   priority={i === 0}
                 />
               </div>

@@ -1,7 +1,7 @@
 .section {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: var(--section-h);
   z-index: 7;
   background: linear-gradient(165deg, #f8fafc 0%, #eef2ff 45%, #f0f9ff 100%);
   display: flex;
@@ -153,7 +153,17 @@
 }
 
 @media (max-width: 767px) {
+  .section {
+    padding: var(--page-pad-top) var(--page-pad-x) clamp(1.25rem, 3vh, 2rem);
+  }
+
   .grid { grid-template-columns: 1fr; }
   .subtitle { font-size: 0.72rem; }
-  .card { transform: none; }
+  .title { font-size: clamp(1.65rem, 6vw, 2.2rem); }
+  .card { transform: none; padding: 0.85rem 0.95rem; }
+  .marqueeWrap { margin-top: 0.65rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

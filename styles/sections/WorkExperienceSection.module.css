@@ -1,6 +1,6 @@
 /* ── Section ───────────────────────────────────── */
 .section {
-  height: 100vh;
+  height: var(--section-h);
   background: linear-gradient(165deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
   display: flex;
   flex-direction: column;
@@ -336,8 +336,21 @@
 
 /* ── Tablet (768–1023px) ────────────────────────── */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .header   { padding-top: clamp(1.5rem, 5vh, 3rem); }
-  .role     { font-size: 1.1rem; }
-  .company  { font-size: 0.92rem; }
-  .entries  { gap: 1.5rem; }
+  .entries {
+    flex-direction: column;
+    overflow-x: visible;
+    gap: 1.25rem;
+  }
+
+  .entry {
+    flex: none;
+    width: 100%;
+    max-width: 28rem;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .snakeLine { display: none; }
+  .company { font-size: 1rem; }
+  .role { font-size: 0.95rem; }
 }
