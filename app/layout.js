@@ -27,12 +27,12 @@ const dancing = Dancing_Script({
 });
 
 const description =
-  'Data Engineer with 3+ years building ETL/ELT pipelines, real-time streaming systems, ML platforms, and cloud data warehouses on AWS and Azure. MS Data Science @ University at Buffalo.';
+  'Software Engineer with 3+ years building backend applications, REST APIs, cloud services, and data-intensive software. MS Data Science @ University at Buffalo.';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Srivardhan Vemula | Data Engineer',
+    default: 'Srivardhan Vemula | Software Engineer',
     template: '%s | Srivardhan Vemula',
   },
   description,
@@ -118,7 +118,7 @@ export default function RootLayout({ children }) {
               '@type': 'Person',
               name: 'Srivardhan Baba Vemula',
               url: SITE_URL,
-              email: 'srivardh@buffalo.edu',
+              email: 'srivardhanbaba@gmail.com',
               jobTitle: 'Software Engineer',
               sameAs: [
                 'https://github.com/srivardhanbabavemula',

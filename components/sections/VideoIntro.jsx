@@ -145,7 +145,7 @@ export default function VideoIntro() {
         </h1>
         <p ref={roleRef} className={styles.role}>{profile.roles.detailed}</p>
         <p className={styles.detailLine}>
-          {profile.email} · {profile.emailPersonal} · {profile.phone}
+          {[...new Set([profile.email, profile.emailPersonal].filter(Boolean)), profile.phone].join(' · ')}
         </p>
         <p className={styles.detailSub}>{profile.location.based} · {profile.location.availability}</p>
       </div>

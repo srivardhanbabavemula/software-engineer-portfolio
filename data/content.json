@@ -3,11 +3,11 @@
     "tagline": "Portfolio 2026"
   },
   "hero": {
-    "taglineHighlight": "high-volume data",
-    "freelanceNote": "Open to Summer 2026 internships and full-time Data Engineering, Data Science, and Software Engineering roles.",
-    "availableLabel": "Open to opportunities",
-    "pills": ["Python & SQL", "AWS & Azure", "PySpark & Kafka", "Generative AI"],
-    "specialistStat": { "value": "Data + ML", "label": "Engineer" }
+    "taglineHighlight": "data-intensive software",
+    "freelanceNote": "Open to Relocate Anywhere in the USA — backend, APIs, cloud services, and AI software roles.",
+    "availableLabel": "Open to relocate anywhere in the USA",
+    "pills": ["Python & Java", "REST APIs", "AWS & Azure", "Docker & CI/CD"],
+    "specialistStat": { "value": "Backend + AI", "label": "Engineer" }
   },
   "interstitial": {
     "availabilityLabel": "Availability",
@@ -15,8 +15,8 @@
     "statLabels": ["Years\nexperience", "Professional\ncertifications", "GitHub\nprojects"]
   },
   "footer": {
-    "eyebrow": "Open to Summer 2026 & full-time roles",
-    "ctaLines": ["Building data systems that", "scale reliably in production"],
+    "eyebrow": "Open to Relocate Anywhere in the USA",
+    "ctaLines": ["Building backend systems that", "scale reliably in production"],
     "ctaAccent": "proven."
   }
 }

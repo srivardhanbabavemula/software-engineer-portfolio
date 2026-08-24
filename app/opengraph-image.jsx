@@ -134,8 +134,8 @@ export default function Image() {
           >
             {[
               'Python',
-              'Data Engineering',
-              'Machine Learning',
+              'Software Engineering',
+              'REST APIs',
               'Cloud',
             ].map((tag) => (
               <div

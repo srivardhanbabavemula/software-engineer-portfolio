@@ -8,52 +8,52 @@
   "highlights": [
     {
       "id": 1,
-      "title": "40% Pipeline Throughput Improvement",
+      "title": "40% Throughput Improvement",
       "platform": "Broadridge",
       "year": "2025",
       "link": "https://www.linkedin.com/in/srivardhan-baba-vemula/",
-      "desc": "Engineered AWS/SFTP pipelines processing 200+ files daily with 40% throughput gains and 15 hrs/week manual effort saved."
+      "desc": "Automated Python workflows connecting AWS S3, SFTP, and enterprise systems; processed 200+ files daily and eliminated 15 hrs/week of manual processing."
     },
     {
       "id": 2,
-      "title": "500K+ Events/Hour Streaming",
-      "platform": "Real-Time Data",
-      "year": "2024",
-      "link": "https://github.com/srivardhanbabavemula/SOFTWARE-ENGINEERING-Projects",
-      "desc": "Built Kafka + Spark Streaming pipelines with sub-2s latency and 99.9% uptime at 3× traffic spikes."
+      "title": "Flask Inference APIs — 378ms",
+      "platform": "UB Media Forensic Lab",
+      "year": "2026",
+      "link": "https://zinc.cse.buffalo.edu/ubmdfl/deep-o-meter/",
+      "desc": "Engineered Flask REST APIs for deep learning model inference, lowering latency from 580ms to 378ms while increasing throughput by 28%."
     },
     {
       "id": 3,
-      "title": "65% Faster PySpark Runtimes",
+      "title": "60% Faster PySpark Workloads",
       "platform": "UB Research",
       "year": "2026",
       "link": "https://zinc.cse.buffalo.edu/ubmdfl/deep-o-meter/",
-      "desc": "Processed 100GB+ datasets with adaptive partitioning, broadcast joins, and concurrent PySpark workflows."
+      "desc": "Optimized PySpark workloads across 100GB+ datasets through partitioning and broadcast joins, shortening execution time by 60%."
     },
     {
       "id": 4,
-      "title": "47+ Professional Certifications",
-      "platform": "IBM · AWS · Azure",
-      "year": "2024",
-      "link": "https://www.linkedin.com/in/srivardhan-baba-vemula/details/certifications/",
-      "desc": "IBM Data Science, AWS Essentials, Azure AZ-900/AI-900, Generative AI, Python, Spark, SQL, and more."
+      "title": "12% F1-Score Lift",
+      "platform": "Deepfake Detection",
+      "year": "2026",
+      "link": "https://www.linkedin.com/in/srivardhan-baba-vemula/",
+      "desc": "Evaluated 5+ deep learning architectures through standardized training and validation workflows, raising synthetic-media classification F1-score by 12%."
     }
   ],
-  "email": "srivardh@buffalo.edu",
-  "emailPersonal": "ssrivardhanbabavemula@gmail.com",
+  "email": "srivardhanbaba@gmail.com",
+  "emailPersonal": "srivardhanbaba@gmail.com",
   "phone": "+1-716-604-4929",
-  "tagline": "Cloud & Data Engineer building ETL pipelines, streaming systems, and AI-integrated applications on AWS and Azure.",
-  "description": "Cloud & Data Engineer with 3+ years delivering cloud-native ETL pipelines, streaming systems, and AI-integrated applications. MS Data Science @ University at Buffalo.",
+  "tagline": "Software Engineer building backend applications, REST APIs, cloud services, and data-intensive software.",
+  "description": "Software Engineer with 3+ years of experience building backend applications, REST APIs, cloud services, and data-intensive software. MS Data Science @ University at Buffalo.",
   "roles": {
-    "short": "Data Engineer",
-    "detailed": "Cloud & Data Engineer | Python, SQL, AWS, PySpark, Kafka | Open to Summer 2026 & Full-Time Roles"
+    "short": "Software Engineer",
+    "detailed": "Software Engineer | Python, Java, SQL, AWS, Azure | Open to Relocate Anywhere in the USA"
   },
   "location": {
     "based": "Buffalo, NY",
-    "availability": "Buffalo / Remote / Open to Work"
+    "availability": "Open to Relocate Anywhere in the USA"
   },
   "available": true,
-  "bio": "Cloud & Data Engineer with 3+ years delivering cloud-native ETL pipelines, streaming systems, and AI-integrated applications on AWS and Azure. Achieved 40% throughput gains, 65% faster batch runtimes, and 99.8% uptime. Currently contributing to deepfake detection research at the Institute for Artificial Intelligence and Data Science, University at Buffalo, under Prof. Siwei Lyu (IEEE Fellow). Experienced with Python, SQL, PySpark, Kafka, Airflow, AWS, Azure, Snowflake, Flask, FastAPI, Docker, Tableau, and Power BI. Open to Data Engineering, Data Science, and Software Engineering roles.",
+  "bio": "Software Engineer with 3+ years of experience building backend applications, REST APIs, cloud services, and data-intensive software. Experienced with Python, Java, SQL, AWS, Azure, Docker, distributed systems, database design, testing, and CI/CD. Contributing to AI software and deepfake detection research under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science). Open to relocate anywhere in the USA.",
   "education": [
     {
       "id": 1,
@@ -65,25 +65,24 @@
       "location": "Buffalo, New York, United States",
       "highlights": [
         "Pursuing graduate studies in data science with focus on machine learning, statistical modeling, and large-scale analytics.",
-        "Graduate Research Assistant at the Institute for Artificial Intelligence and Data Science under Prof. Siwei Lyu (IEEE Fellow).",
-        "Building production ETL pipelines, PySpark workflows, ML inference systems, and MLOps practices for deepfake detection research."
+        "Graduate Research Assistant — Software Engineering & AI Systems at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow).",
+        "Building Python data-processing components, Flask REST APIs, PySpark workloads, and MLflow experiment tracking for deepfake detection research."
       ],
       "coursework": [
         "Machine Learning",
         "Statistical Learning",
         "Data Mining",
         "Predictive Analytics",
-        "Probability",
-        "Introduction to Probability Theory for Data Science (EAS502)",
+        "Probability Theory",
         "Database Systems",
-        "SQL",
-        "Numerical Computing"
+        "Numerical Computing",
+        "Applications of Data Science: Industry Overview"
       ]
     },
     {
       "id": 2,
       "degree": "Bachelor of Technology (B.Tech), Computer Science",
-      "school": "Kshatriya College of Engineering",
+      "school": "Jawaharlal Nehru Technological University Hyderabad (JNTUH)",
       "period": "Aug 2019",
       "periodEnd": "Jul 2023",
       "status": "Completed",
@@ -100,7 +99,15 @@
         "Operating Systems",
         "Computer Networks",
         "Software Engineering",
-        "Engineering Graphics"
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Cloud Computing",
+        "Distributed Systems",
+        "Advanced Algorithms",
+        "Computer Security",
+        "Design & Analysis of Algorithms",
+        "Object-Oriented Programming",
+        "Computer Organization & Architecture"
       ]
     },
     {
@@ -278,7 +285,7 @@
   ],
   "stats": [
     {
-      "value": "5+",
+      "value": "3+",
       "label": "Years Experience"
     },
     {
@@ -321,162 +328,141 @@
       "title": "Languages",
       "items": [
         "Python",
-        "SQL",
         "Java",
+        "C++",
+        "SQL",
         "R",
         "Bash",
         "Unix Shell Scripting"
       ]
     },
     {
-      "title": "Python Libraries",
+      "title": "Backend & APIs",
+      "items": [
+        "Flask",
+        "FastAPI",
+        "REST APIs",
+        "API Integration",
+        "Microservices",
+        "JSON",
+        "HTTP"
+      ]
+    },
+    {
+      "title": "Software Engineering",
+      "items": [
+        "Object-Oriented Programming",
+        "Data Structures & Algorithms",
+        "Unit Testing",
+        "Integration Testing",
+        "Pytest",
+        "Git",
+        "GitHub",
+        "Docker",
+        "Linux",
+        "CI/CD"
+      ]
+    },
+    {
+      "title": "Cloud & Systems",
+      "items": [
+        "AWS (S3, EC2, Lambda, CloudWatch)",
+        "Azure (ADF, Azure SQL)",
+        "Apache Kafka",
+        "PySpark",
+        "Hadoop",
+        "Distributed Systems"
+      ]
+    },
+    {
+      "title": "Databases & Data",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "Microsoft SQL Server",
+        "Snowflake",
+        "Google BigQuery",
+        "Database Design",
+        "Indexing",
+        "Query Optimization",
+        "ETL/ELT",
+        "Data Modeling"
+      ]
+    },
+    {
+      "title": "ML & AI",
       "items": [
         "Pandas",
         "NumPy",
         "Scikit-Learn",
         "TensorFlow",
         "PyTorch",
-        "XGBoost"
-      ]
-    },
-    {
-      "title": "Data Engineering",
-      "items": [
-        "ETL/ELT",
-        "Data Modeling (Star/Snowflake Schemas)",
-        "Data Lakes",
-        "Delta Lake",
-        "Parquet",
-        "Batch Processing",
-        "Stream Processing",
-        "Spark Streaming"
-      ]
-    },
-    {
-      "title": "Cloud & Distributed Systems",
-      "items": [
-        "AWS (S3, EC2, Lambda, CloudWatch)",
-        "Azure (ADF, Azure SQL)",
-        "PySpark",
-        "Apache Kafka",
-        "Hadoop",
-        "Docker",
-        "CI/CD",
-        "Git"
-      ]
-    },
-    {
-      "title": "Machine Learning",
-      "items": [
-        "Regression",
-        "Classification",
-        "Forecasting",
-        "Predictive Modeling",
-        "Statistical Analysis",
-        "Hypothesis Testing",
-        "NLP",
+        "XGBoost",
         "Feature Engineering",
         "Model Evaluation",
-        "Cross Validation",
-        "Hyperparameter Tuning",
-        "Deep Learning",
-        "Deepfake Detection",
-        "LangChain",
-        "RAG"
-      ]
-    },
-    {
-      "title": "Databases & Warehouses",
-      "items": [
-        "PostgreSQL",
-        "Snowflake",
-        "Google BigQuery",
-        "MySQL",
-        "Microsoft SQL Server"
-      ]
-    },
-    {
-      "title": "Analytics, Statistics & Deployment",
-      "items": [
         "MLflow",
-        "Airflow",
-        "Git",
-        "Docker",
-        "A/B Testing",
-        "Statistical Testing",
-        "Model Monitoring",
-        "Flask",
-        "FastAPI",
-        "React"
+        "NLP",
+        "Generative AI"
       ]
     },
     {
-      "title": "Data Quality & BI",
+      "title": "Quality & Tools",
       "items": [
-        "Automated Validation (Pytest/Great Expectations)",
+        "Great Expectations",
+        "Airflow",
+        "Monitoring",
+        "Logging",
         "Tableau",
         "Power BI",
-        "Excel Power Query",
-        "Sterling File Gateway"
+        "Excel Power Query"
       ]
     }
   ],
   "skills": [
     "Python",
-    "SQL",
     "Java",
-    "R",
-    "Bash",
-    "Pandas",
-    "NumPy",
-    "Scikit-Learn",
-    "TensorFlow",
-    "PyTorch",
-    "XGBoost",
-    "ETL/ELT",
-    "PySpark",
-    "Apache Kafka",
-    "Hadoop",
-    "AWS",
-    "Azure",
-    "Snowflake",
-    "BigQuery",
-    "PostgreSQL",
-    "MySQL",
-    "MLflow",
-    "Airflow",
-    "Docker",
-    "Tableau",
-    "Power BI",
-    "NLP",
-    "Regression",
-    "Forecasting",
-    "Deep Learning",
-    "LangChain",
-    "RAG",
+    "C++",
+    "SQL",
     "Flask",
     "FastAPI",
-    "React"
+    "REST APIs",
+    "Microservices",
+    "Docker",
+    "CI/CD",
+    "AWS",
+    "Azure",
+    "Apache Kafka",
+    "PySpark",
+    "PostgreSQL",
+    "Snowflake",
+    "BigQuery",
+    "MLflow",
+    "PyTorch",
+    "TensorFlow",
+    "XGBoost",
+    "Tableau",
+    "Airflow",
+    "Pytest"
   ],
   "experience": [
     {
       "id": 1,
-      "role": "Graduate Research Assistant",
-      "company": "Institute for Artificial Intelligence and Data Science",
-      "companySub": "University at Buffalo",
-      "companyShort": "UB IAIDS",
+      "role": "Graduate Research Assistant — Software Engineering & AI Systems",
+      "company": "UB Media Forensic Lab",
+      "companySub": "University at Buffalo · Advisor: Prof. Siwei Lyu, IEEE Fellow",
+      "companyShort": "UB MDFL",
       "type": "Research",
       "location": "Buffalo, NY",
       "period": "Jan 2026",
       "periodEnd": "Present",
       "bullets": [
-        "Developed React, Flask, and Jinja frontend/backend components for AI-driven application workflows.",
-        "Built REST APIs for real-time ML inference; reduced latency from 580ms to 378ms (+28% throughput).",
-        "Engineered PySpark workflows on 100GB+ datasets; cut runtime by 60% via partitioning and broadcast joins.",
-        "Architected Python ETL pipelines ingesting 50K+ multi-modal records into AWS S3 for Deep-O-Meter.",
-        "Implemented MLflow versioning and data lineage across 10+ configs; reduced QA effort by 30%."
+        "Built Python data-processing components for 50K+ multimodal records stored in AWS S3, cutting preprocessing errors by 45% for the Deep-O-Meter research platform.",
+        "Optimized PySpark workloads across 100GB+ datasets through partitioning and broadcast joins, shortening execution time by 60%.",
+        "Engineered Flask REST APIs for deep learning model inference, lowering response latency from 580ms to 378ms while increasing throughput by 28%.",
+        "Evaluated 5+ deep learning architectures through standardized training and validation workflows, raising synthetic-media classification F1-score by 12%.",
+        "Streamlined experiment tracking and model comparisons across 10+ configurations with MLflow, cutting validation effort by 30%."
       ],
-      "desc": "Research at the Institute for Artificial Intelligence and Data Science, University at Buffalo, under Prof. Siwei Lyu (IEEE Fellow).",
+      "desc": "Software engineering and AI systems research at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science).",
       "tech": [
         "Python",
         "React",
@@ -536,21 +522,21 @@
     },
     {
       "id": 4,
-      "role": "Cloud & Data Engineer",
+      "role": "Senior Software Engineer",
       "company": "Broadridge Financial Solutions",
       "companyShort": "BROADRIDGE",
       "type": "Full-time",
-      "location": "Hyderabad, India",
+      "location": "India",
       "period": "Sep 2024",
-      "periodEnd": "Aug 2025",
+      "periodEnd": "Jul 2025",
       "bullets": [
-        "Engineered AWS and SFTP pipelines processing 200+ files/day; improved throughput by 40% and saved 15 hrs/week.",
-        "Maintained Sterling File Gateway enterprise workflows with 99.8% system uptime across 12+ pipelines.",
-        "Optimized 20+ SQL queries and redesigned schemas; reduced analytics query latency by 30%.",
-        "Built monitoring and validation frameworks (CloudWatch + PagerDuty); cut incident response by 25%.",
-        "Instituted CI/CD test suites across 15+ workflows, cutting post-deployment defects by 40%."
+        "Automated Python workflows connecting AWS S3, SFTP, and enterprise systems; processed 200+ files daily, increasing throughput by 40% and eliminating 15 hrs/week of manual processing.",
+        "Integrated Sterling File Gateway with 5+ enterprise systems, introducing validation and exception routing that lowered cross-system errors by 35%.",
+        "Established monitoring and recovery mechanisms with CloudWatch, PagerDuty, and Airflow across 12+ production workflows, maintaining 99.8% uptime and shortening incident resolution time by 25%.",
+        "Refactored 20+ SQL queries using CTEs and window functions and redesigned 4 database schemas, decreasing query latency by 30% and storage overhead by 20%.",
+        "Instituted automated tests and deployment checks across 15+ workflows, cutting post-release defects by 40%."
       ],
-      "desc": "Enterprise cloud data engineering, SOX-compliant pipelines, and production observability.",
+      "desc": "Senior software engineering for enterprise file workflows, APIs, monitoring, and production reliability.",
       "tech": [
         "Python",
         "AWS S3",
@@ -563,7 +549,7 @@
     },
     {
       "id": 5,
-      "role": "Data Engineer & Data Analyst",
+      "role": "Software Engineer",
       "company": "Freelance",
       "companyShort": "FREELANCE",
       "type": "Contract",
@@ -571,12 +557,12 @@
       "period": "Aug 2022",
       "periodEnd": "Aug 2024",
       "bullets": [
-        "Built Python ETL pipelines ingesting 500K+ records from 10+ sources; reduced processing time by 45%.",
-        "Designed relational schemas and indexing strategies; improved query performance by 60%.",
-        "Developed 15+ Tableau and Power BI dashboards; reduced manual reporting by 6 hrs/week.",
-        "Implemented data validation frameworks ensuring 99.5% accuracy across 2M+ records."
+        "Created Python and SQL applications processing 500K+ records across 10+ data sources, accelerating execution by 45%.",
+        "Restructured relational schemas and indexing strategies for 8 datasets, achieving 60% faster query performance across 3 enterprise clients.",
+        "Delivered 15+ client applications and reporting interfaces using Python and SQL, translating requirements into reusable software components.",
+        "Strengthened production workflows with application-level validation and error recovery, maintaining 99.5% accuracy across 2M+ records."
       ],
-      "desc": "End-to-end data pipelines, analytics dashboards, and database optimization for clients.",
+      "desc": "Backend applications, database design, and production software for enterprise clients.",
       "tech": [
         "Python",
         "SQL",
@@ -655,6 +641,71 @@
     }
   ],
   "projects": [
+    {
+      "id": 101,
+      "title": "Customer Analytics & Churn Prediction",
+      "subtitle": "Classification Models",
+      "type": "Machine Learning",
+      "link": "https://github.com/srivardhanbabavemula",
+      "image": "/assets/projects/analytics.png",
+      "context": "Trained classifiers achieving 85% accuracy via feature engineering and cross-validation.",
+      "tech": [
+        "Scikit-Learn",
+        "XGBoost",
+        "Python",
+        "Feature Engineering"
+      ],
+      "desc": "Trained classifiers achieving 85% accuracy via feature engineering and cross-validation.",
+      "bgImage": "/assets/projects/bg/analytics-bg.png"
+    },
+    {
+      "id": 102,
+      "title": "Predictive Analytics Framework",
+      "subtitle": "Regression & Classification",
+      "type": "Machine Learning",
+      "link": "https://github.com/srivardhanbabavemula",
+      "image": "/assets/projects/forecasting.png",
+      "context": "Developed regression and classification models on multi-source datasets; improved prediction accuracy by 18%.",
+      "tech": [
+        "Python",
+        "XGBoost",
+        "SQL"
+      ],
+      "desc": "Developed regression and classification models on multi-source datasets; improved prediction accuracy by 18% using feature engineering, hyperparameter tuning, and cross-validation.",
+      "bgImage": "/assets/projects/bg/forecasting-bg.png"
+    },
+    {
+      "id": 103,
+      "title": "Deepfake Detection Research",
+      "subtitle": "Computer Vision",
+      "type": "Research",
+      "link": "https://zinc.cse.buffalo.edu/ubmdfl/deep-o-meter/",
+      "image": "/assets/projects/deep-o-meter.png",
+      "context": "Deep learning classification models for synthetic media detection under Prof. Siwei Lyu.",
+      "tech": [
+        "PyTorch",
+        "TensorFlow",
+        "Computer Vision"
+      ],
+      "desc": "Developed deep learning classification models for synthetic media detection using feature extraction and model evaluation techniques; evaluated 5+ architectures and improved classification F1-score by 12%.",
+      "bgImage": "/assets/projects/bg/deep-o-meter-bg.png"
+    },
+    {
+      "id": 104,
+      "title": "Azure Cloud Data Warehouse",
+      "subtitle": "ADF · Snowflake · SQL",
+      "type": "Cloud Engineering",
+      "link": "https://github.com/srivardhanbabavemula",
+      "image": "/assets/projects/azure-etl.png",
+      "context": "Unified 6 sources into Snowflake transforming 50M+ records/month; shortened load SLA from 4 hrs to 45 min.",
+      "tech": [
+        "Azure ADF",
+        "Snowflake",
+        "SQL"
+      ],
+      "desc": "Unified 6 sources into Snowflake transforming 50M+ records/month; shortened load SLA from 4 hrs to 45 min.",
+      "bgImage": "/assets/projects/bg/azure-etl-bg.png"
+    },
     {
       "id": 1,
       "title": "Deep-O-Meter",
@@ -1343,8 +1394,8 @@
   "resume": "/assets/resume.pdf",
   "contact": {
     "linkedin": "https://www.linkedin.com/in/srivardhan-baba-vemula/",
-    "email": "srivardh@buffalo.edu",
-    "emailPersonal": "ssrivardhanbabavemula@gmail.com",
+    "email": "srivardhanbaba@gmail.com",
+    "emailPersonal": "srivardhanbaba@gmail.com",
     "phone": "+1-716-604-4929"
   }
 }

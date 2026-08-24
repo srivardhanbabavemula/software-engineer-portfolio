@@ -21,15 +21,20 @@ const CONTACT = profile.contact ?? {
   phone: profile.phone,
 }
 
+const uniqueEmails = [...new Set([CONTACT.email, CONTACT.emailPersonal].filter(Boolean))]
 const CONTACT_LINKS = [
   { label: 'LinkedIn', href: CONTACT.linkedin, icon: <FaLinkedinIn size={13} /> },
-  { label: 'Email (UB)', href: `mailto:${CONTACT.email}`, icon: <FaEnvelope size={13} /> },
-  { label: 'Email (Personal)', href: `mailto:${CONTACT.emailPersonal}`, icon: <FaEnvelope size={13} /> },
+  ...uniqueEmails.map((addr, i) => ({
+    label: uniqueEmails.length > 1 ? (i === 0 ? 'Email (UB)' : 'Email (Personal)') : 'Email',
+    href: `mailto:${addr}`,
+    icon: <FaEnvelope size={13} />,
+  })),
   { label: 'Phone', href: `tel:${CONTACT.phone?.replace(/[^\d+]/g, '')}`, icon: <FaPhone size={13} /> },
 ].filter(item => item.href)
 
 const MOBILE_CONTACT_ICONS = {
   LinkedIn: <FaLinkedinIn size={20} />,
+  Email: <FaEnvelope size={20} />,
   'Email (UB)': <FaEnvelope size={20} />,
   'Email (Personal)': <FaEnvelope size={20} />,
   Phone: <FaPhone size={20} />,
@@ -520,8 +525,8 @@ export default function PublicationsFooterSection() {
                         {item.icon && (
                           <span className={styles.socialIcon}>{item.icon}</span>
                         )}
-                        {item.label === 'Email (UB)' ? CONTACT.email
-                          : item.label === 'Email (Personal)' ? CONTACT.emailPersonal
+                        {item.label.startsWith('Email')
+                          ? item.href.replace('mailto:', '')
                           : item.label === 'Phone' ? CONTACT.phone
                           : item.label}
                       </a>
