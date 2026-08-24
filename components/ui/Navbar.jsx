@@ -42,6 +42,18 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
+    const closeMenu = () => {
+      if (window.matchMedia('(min-width: 1024px)').matches) setMenuOpen(false)
+    }
+    window.addEventListener('resize', closeMenu)
+    window.addEventListener('orientationchange', closeMenu)
+    return () => {
+      window.removeEventListener('resize', closeMenu)
+      window.removeEventListener('orientationchange', closeMenu)
+    }
+  }, [])
+
+  useEffect(() => {
     const scroller = document.querySelector('main') ?? window
 
     function showNavbar() {

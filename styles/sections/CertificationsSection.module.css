@@ -170,5 +170,17 @@
   .section {
     grid-template-columns: minmax(200px, 32%) minmax(0, 1fr);
     gap: 1.25rem;
+    overflow: hidden;
   }
+
+  .list { overflow-y: auto; }
+}
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .section {
+    grid-template-columns: minmax(160px, 28%) minmax(0, 1fr);
+    padding-top: var(--page-pad-top);
+    gap: 0.75rem;
+  }
+  .title { font-size: clamp(1.15rem, 5vh, 1.6rem); }
 }

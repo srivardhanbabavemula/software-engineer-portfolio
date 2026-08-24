@@ -986,3 +986,12 @@
   .item         { grid-template-columns: 3rem minmax(0, 1fr) auto; }
   .title        { font-size: clamp(0.78rem, 1.4vw, 1rem); }
 }
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .wrapper { height: 300dvh; }
+  .sticky { height: 100dvh; }
+  .pubHero { padding: 2.4rem 1.25rem 0; }
+  .heading { font-size: clamp(1.2rem, 6vh, 1.8rem); }
+  .mobileLayout { padding-bottom: 3.5rem; gap: 0.45rem; }
+  .interstitialBottom { bottom: 1rem; }
+}

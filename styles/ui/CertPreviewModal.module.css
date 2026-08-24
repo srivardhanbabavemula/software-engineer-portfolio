@@ -106,3 +106,7 @@
   .backdrop { padding: 0.5rem; }
   .dialog { max-height: 94vh; border-radius: 0.75rem; }
 }
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .dialog { max-height: 92dvh; max-width: min(92vw, 52rem); }
+}

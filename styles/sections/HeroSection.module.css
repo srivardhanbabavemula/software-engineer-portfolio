@@ -396,3 +396,34 @@
   .socialSidebar { width: 2.25rem; }
   .name        { white-space: normal; }
 }
+
+/* Phone / tablet landscape — compact horizontal layout */
+@media (orientation: landscape) and (max-height: 540px) {
+  .section { height: 100dvh; }
+  .socialSidebar { display: none; }
+  .cardsCol { display: none; }
+  .scrollIndicator { display: none; }
+
+  .content {
+    left: 1rem;
+    top: calc(2.4rem + env(safe-area-inset-top, 0px));
+    gap: 0.25rem;
+    max-width: 52vw;
+    --hero-name-size: clamp(1.35rem, 8vh, 2.4rem);
+  }
+
+  .name { white-space: normal; }
+  .pills { display: none; }
+  .stats { gap: 0.25rem; }
+  .statCard { padding: 0.25rem 0.5rem; min-width: 3.5rem; }
+  .statValue { font-size: 0.75rem; }
+  .statLabel { font-size: 0.45rem; }
+  .viewBtn { font-size: 0.7rem; padding: 0.35rem 0.9rem; }
+
+  .photo {
+    width: 48%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+  }
+}

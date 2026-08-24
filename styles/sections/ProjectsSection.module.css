@@ -345,6 +345,12 @@
   .bottomUI { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
 }
 
+@media (orientation: landscape) and (max-height: 540px) {
+  .visualPanel { height: min(38vh, 180px); }
+  .title { font-size: clamp(1.1rem, 4.5vh, 1.5rem); }
+  .trackStacked .slide { padding-bottom: 4.5rem; }
+}
+
 @media (min-width: 1024px) and (max-width: 1279px) {
   .slide {
     grid-template-columns: minmax(0, 1fr) minmax(240px, 0.85fr);

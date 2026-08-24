@@ -156,6 +156,23 @@ export default function Home() {
     window.addEventListener('navigate-section', onNavigate)
     window.addEventListener('footer-loop-back', onFooterLoop)
 
+    let resizeTimer = null
+    function syncViewport() {
+      ScrollTrigger.refresh()
+      const idx = idxRef.current
+      if (!busyRef.current) {
+        el.scrollTop = getScrollTopForIdx(idx)
+        ScrollTrigger.update()
+      }
+    }
+    function onResize() {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(syncViewport, 140)
+    }
+    window.addEventListener('resize', onResize)
+    window.addEventListener('orientationchange', syncViewport)
+    window.visualViewport?.addEventListener('resize', onResize)
+
     return () => {
       el.removeEventListener('wheel',  onWheel)
       el.removeEventListener('scroll', onScroll)
@@ -163,6 +180,10 @@ export default function Home() {
       window.removeEventListener('footer-loop-back', onFooterLoop)
       el.removeEventListener('touchstart', onTouchStart)
       el.removeEventListener('touchend',   onTouchEnd)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('orientationchange', syncViewport)
+      window.visualViewport?.removeEventListener('resize', onResize)
+      clearTimeout(resizeTimer)
       tweenRef.current?.kill()
     }
   }, [])

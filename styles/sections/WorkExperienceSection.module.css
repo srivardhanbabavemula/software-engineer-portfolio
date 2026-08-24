@@ -336,6 +336,11 @@
 
 /* ── Tablet (768–1023px) ────────────────────────── */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .timeline {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .entries {
     flex-direction: column;
     overflow-x: visible;
@@ -353,4 +358,13 @@
   .snakeLine { display: none; }
   .company { font-size: 1rem; }
   .role { font-size: 0.95rem; }
+}
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .header { padding-top: var(--page-pad-top); }
+  .timeline { overflow-y: auto; padding-top: 0.5rem; }
+  .entries { flex-direction: column; gap: 0.75rem; }
+  .snakeLine { display: none; }
+  .role { font-size: 0.88rem; }
+  .bullet { font-size: 0.75rem; }
 }

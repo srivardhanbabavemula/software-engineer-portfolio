@@ -29,6 +29,14 @@ const dancing = Dancing_Script({
 const description =
   'Software Engineer with 3+ years building backend applications, REST APIs, cloud services, and data-intensive software. MS Data Science @ University at Buffalo.';
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: '#0f172a',
+}
+
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {

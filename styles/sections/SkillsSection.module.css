@@ -155,6 +155,8 @@
 @media (max-width: 767px) {
   .section {
     padding: var(--page-pad-top) var(--page-pad-x) clamp(1.25rem, 3vh, 2rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .grid { grid-template-columns: 1fr; }
@@ -166,4 +168,12 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section { overflow-y: auto; }
+}
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .section { overflow-y: auto; }
+  .title { font-size: clamp(1.2rem, 5vh, 1.7rem); }
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.4rem; }
+  .marqueeWrap { display: none; }
 }

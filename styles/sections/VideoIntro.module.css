@@ -247,10 +247,32 @@
 }
 
 @media (max-width: 767px) {
-  .heroContent { padding: 0 1.5rem; }
-  .name        { font-size: clamp(2.8rem, 11vw, 5rem); }
-  .controls    { bottom: 1.5rem; right: 1rem; }
-  .scrollCue   { bottom: 1.5rem; }
+  .heroContent { padding: 0 1.5rem; padding-top: env(safe-area-inset-top, 0px); }
+  .name        { font-size: clamp(2.4rem, 11vw, 4.4rem); }
+  .role        { font-size: clamp(0.62rem, 2.8vw, 0.78rem); max-width: 92vw; }
+  .detailLine, .detailSub { font-size: 0.68rem; }
+  .controls    { bottom: max(1.25rem, env(safe-area-inset-bottom, 0px)); right: 1rem; }
+  .scrollCue   { bottom: max(1.25rem, env(safe-area-inset-bottom, 0px)); }
   .soundHint   { bottom: 4.5rem; right: 1rem; }
   .bgVideo     { display: none; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .heroContent { padding: 0 2.5rem; }
+  .name { font-size: clamp(2.8rem, 7vw, 5.5rem); }
+}
+
+@media (orientation: landscape) and (max-height: 540px) {
+  .heroContent {
+    justify-content: flex-end;
+    padding: 0 1.5rem max(4.25rem, env(safe-area-inset-bottom, 0px));
+  }
+  .name { font-size: clamp(1.6rem, 9vh, 2.8rem); }
+  .eyebrow { margin-bottom: 0.35rem; font-size: 0.58rem; }
+  .role { margin-top: 0.45rem; font-size: 0.62rem; }
+  .detailLine { font-size: 0.62rem; margin-top: 0.35rem; }
+  .scrollCue { display: none; }
+  .soundHint { display: none; }
+  .controls { bottom: 0.75rem; right: 0.75rem; }
+  .mainVideo { object-position: 50% 28%; }
 }

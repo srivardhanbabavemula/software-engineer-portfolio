@@ -45,6 +45,10 @@
   --section-h: 100dvh;
   --page-pad-x: clamp(1.25rem, 4vw, 4.5rem);
   --page-pad-top: clamp(4rem, 7vh, 5.5rem);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
 
   /* Type scale */
   --hero-name-size: clamp(4.5rem, 13vw, 12rem);
@@ -69,6 +73,11 @@
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html, body {
   height: 100%;
   overflow: hidden;
@@ -119,5 +128,25 @@ main { scrollbar-width: none; -ms-overflow-style: none; }
   :root {
     --text-body: clamp(0.95rem, 1vw, 1.08rem);
     --page-pad-x: clamp(2rem, 5vw, 5rem);
+  }
+}
+
+/* ─── Phone / tablet landscape (short height) ───────────── */
+@media (orientation: landscape) and (max-height: 540px) {
+  :root {
+    --section-h: 100dvh;
+    --page-pad-x: clamp(0.85rem, 3vw, 1.5rem);
+    --page-pad-top: calc(2.35rem + var(--safe-top));
+    --hero-name-size: clamp(1.5rem, 7vh, 2.6rem);
+  }
+
+  html, body { height: 100dvh; }
+}
+
+/* ─── Tablet landscape ──────────────────────────────────── */
+@media (orientation: landscape) and (min-width: 768px) and (max-width: 1366px) and (min-height: 541px) {
+  :root {
+    --page-pad-x: clamp(1.25rem, 3.5vw, 2.25rem);
+    --page-pad-top: clamp(3.5rem, 8vh, 4.75rem);
   }
 }
