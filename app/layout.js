@@ -27,7 +27,7 @@ const dancing = Dancing_Script({
 });
 
 const description =
-  'Software Engineer with 3+ years building backend applications, REST APIs, cloud services, and data-intensive software. MS Data Science @ University at Buffalo.';
+  'Software Engineer with 3+ years building backend services, REST APIs, cloud workflows, data pipelines, and AI/ML systems. MS Data Science @ University at Buffalo.';
 
 export const viewport = {
   width: 'device-width',

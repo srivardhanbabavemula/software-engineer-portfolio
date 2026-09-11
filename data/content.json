@@ -3,10 +3,10 @@
     "tagline": "Portfolio 2026"
   },
   "hero": {
-    "taglineHighlight": "data-intensive software",
-    "freelanceNote": "Open to Relocate Anywhere in the USA — backend, APIs, cloud services, and AI software roles.",
+    "taglineHighlight": "AI-enabled software",
+    "freelanceNote": "Open to Relocate Anywhere in the USA — backend, cloud, data systems, and AI software roles.",
     "availableLabel": "Open to relocate anywhere in the USA",
-    "pills": ["Python & Java", "REST APIs", "AWS & Azure", "Docker & CI/CD"],
+    "pills": ["Python & Java", "REST APIs", "AWS & Azure", "PySpark & ML"],
     "specialistStat": { "value": "Backend + AI", "label": "Engineer" }
   },
   "interstitial": {
@@ -16,7 +16,7 @@
   },
   "footer": {
     "eyebrow": "Open to Relocate Anywhere in the USA",
-    "ctaLines": ["Building backend systems that", "scale reliably in production"],
+    "ctaLines": ["Building software systems that", "scale reliably in production"],
     "ctaAccent": "proven."
   }
 }
