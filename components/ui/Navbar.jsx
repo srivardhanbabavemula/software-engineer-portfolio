@@ -124,7 +124,7 @@ export default function Navbar() {
 
         <a
           href={profile.resume ?? '/assets/resume.pdf'}
-          download="SRIVARDHAN_BABA_VEMULA_RESUME.pdf"
+          download="SriVardhan_Baba_Vemula_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.emailBtn} rounded-full text-xs font-semibold px-5 h-8`}
@@ -166,7 +166,7 @@ export default function Navbar() {
           })}
           <a
             href={profile.resume ?? '/assets/resume.pdf'}
-            download="SRIVARDHAN_BABA_VEMULA_RESUME.pdf"
+            download="SriVardhan_Baba_Vemula_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mobileMailLink}
