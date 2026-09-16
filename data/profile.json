@@ -12,7 +12,7 @@
       "platform": "Broadridge",
       "year": "2025",
       "link": "https://www.linkedin.com/in/srivardhan-baba-vemula/",
-      "desc": "Automated Python workflows connecting AWS S3, SFTP, and enterprise systems; processed 200+ files daily and eliminated 15 hrs/week of manual processing."
+      "desc": "Engineered Python-based AWS S3 and SFTP data workflows processing 200+ files daily, increasing throughput by 40% and eliminating 15+ hours of manual processing per week."
     },
     {
       "id": 2,
@@ -20,7 +20,7 @@
       "platform": "UB Media Forensic Lab",
       "year": "2026",
       "link": "https://zinc.cse.buffalo.edu/ubmdfl/deep-o-meter/",
-      "desc": "Engineered Flask REST APIs for deep learning model inference, lowering latency from 580ms to 378ms while increasing throughput by 28%."
+      "desc": "Developed Flask REST APIs for deep-learning inference, reducing latency from 580ms to 378ms and increasing inference throughput by 28%."
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "platform": "UB Research",
       "year": "2026",
       "link": "https://zinc.cse.buffalo.edu/ubmdfl/deep-o-meter/",
-      "desc": "Optimized PySpark workloads across 100GB+ datasets through partitioning and broadcast joins, shortening execution time by 60%."
+      "desc": "Built and optimized distributed PySpark workflows for large-scale multimodal ML processing, reducing computation time by 60% through efficient partitioning and joins."
     },
     {
       "id": 4,
@@ -36,14 +36,14 @@
       "platform": "Deepfake Detection",
       "year": "2026",
       "link": "https://www.linkedin.com/in/srivardhan-baba-vemula/",
-      "desc": "Evaluated 5+ deep learning architectures through standardized training and validation workflows, raising synthetic-media classification F1-score by 12%."
+      "desc": "Evaluated 5+ deep-learning architectures using standardized training and validation workflows, improving synthetic-media classification F1-score by 12%."
     }
   ],
   "email": "srivardhanbaba@gmail.com",
   "emailPersonal": "srivardhanbaba@gmail.com",
   "phone": "+1-716-604-4929",
   "tagline": "Software Engineer building backend services, cloud workflows, data systems, and AI-enabled software.",
-  "description": "Software Engineer with 3+ years of experience in backend services, REST APIs, cloud workflows, data pipelines, and AI/ML systems. MS Data Science @ University at Buffalo.",
+  "description": "Software Engineer with 3+ years progressing from Python/SQL applications into backend services, cloud workflows, data systems, and AI-enabled software. MS Data Science @ University at Buffalo.",
   "roles": {
     "short": "Software Engineer",
     "detailed": "Software Engineer | Python, Java, SQL, AWS, Azure | Open to Relocate Anywhere in the USA"
@@ -53,7 +53,7 @@
     "availability": "Open to Relocate Anywhere in the USA"
   },
   "available": true,
-  "bio": "Software Engineer with 3+ years of progressive experience spanning Python/SQL application development, backend services, cloud-connected workflows, data engineering, and AI-enabled software. Strong in Python, Java, C++, SQL, JavaScript, TypeScript, REST APIs, Flask, FastAPI, PySpark, Kafka, Airflow, Snowflake, AWS, Azure, Docker, CI/CD, testing, and performance optimization. Delivered production workflows with 99.8% uptime, 40% throughput gains, 60% faster distributed processing, and ML inference latency reduced from 580ms to 378ms. Currently contributing to AI software and deepfake detection research at the UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science). Open to relocate anywhere in the USA.",
+  "bio": "Software Engineer with 3+ years of experience progressing from Python/SQL application development into backend services, cloud-connected workflows, data systems, and AI-enabled software. Strong in Python, Java, C++, SQL, REST APIs, Flask, FastAPI, PySpark, Kafka, Airflow, Snowflake, AWS, Azure, Docker, CI/CD, debugging, performance optimization, and testing. Delivered production workflows with 99.8% uptime, 40% throughput gains, 60% faster distributed processing, and deep-learning inference latency reduced from 580ms to 378ms. Currently a Graduate Research Assistant in Software Engineering & Data Systems at the UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science). Open to relocate anywhere in the USA.",
   "education": [
     {
       "id": 1,
@@ -65,8 +65,8 @@
       "location": "Buffalo, New York, United States",
       "highlights": [
         "Pursuing graduate studies in data science with focus on machine learning, statistical modeling, and large-scale analytics.",
-        "Graduate Research Assistant — Software Engineering & AI Systems at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow).",
-        "Building Python ETL and data-processing components, Flask inference APIs, PySpark feature pipelines, and MLflow experiment tracking for deepfake detection research."
+        "Graduate Research Assistant — Software Engineering & Data Systems at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow).",
+        "Building Python ETL and data-processing components, Flask inference APIs, PySpark workflows, and MLflow experiment tracking for deepfake detection research."
       ],
       "coursework": [
         "Machine Learning",
@@ -491,7 +491,7 @@
   "experience": [
     {
       "id": 1,
-      "role": "Graduate Research Assistant — Software Engineering & AI Systems",
+      "role": "Graduate Research Assistant — Software Engineering & Data Systems",
       "company": "UB Media Forensic Lab",
       "companySub": "University at Buffalo · Advisor: Prof. Siwei Lyu, IEEE Fellow",
       "companyShort": "UB MDFL",
@@ -500,14 +500,13 @@
       "period": "Jan 2026",
       "periodEnd": "Present",
       "bullets": [
-        "Architected Python ETL and data-processing components for 50K+ multimodal records in AWS S3, cutting preprocessing errors by 45% for the Deep-O-Meter research platform and improving downstream data readiness.",
-        "Tuned distributed PySpark workloads for multimodal ML processing across 100GB+ datasets, reducing computation time by 60% through efficient partitioning and joins.",
-        "Designed ML feature pipelines using PCA, SMOTE, and normalization for 5+ models to support large-scale training and evaluation workflows.",
-        "Exposed Flask REST APIs for deep-learning model inference, lowering latency from 580ms to 378ms and increasing throughput by 28%.",
-        "Evaluated 5+ deep-learning architectures through standardized training and validation workflows, raising synthetic-media classification F1-score by 12%.",
-        "Streamlined MLflow experiment tracking and model lifecycle workflows across 10+ configurations, reducing validation effort by 30%."
+        "Developed Python data-processing and ETL components for 50K+ multimodal records in AWS S3, reducing preprocessing errors by 45% and improving downstream data readiness.",
+        "Built and optimized distributed PySpark workflows for large-scale multimodal ML processing, reducing computation time by 60% through efficient partitioning and joins.",
+        "Developed Flask REST APIs for deep-learning inference, reducing latency from 580ms to 378ms and increasing inference throughput by 28%.",
+        "Evaluated 5+ deep-learning architectures using standardized training and validation workflows, improving synthetic-media classification F1-score by 12%.",
+        "Implemented MLflow experiment tracking across 10+ model configurations, reducing validation effort by 30% and improving experiment comparison."
       ],
-      "desc": "Software engineering, data systems, and AI research at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science).",
+      "desc": "Software engineering and data systems research at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science).",
       "tech": [
         "Python",
         "Flask",
@@ -517,7 +516,8 @@
         "MLflow",
         "PyTorch",
         "TensorFlow",
-        "REST APIs"
+        "REST APIs",
+        "ETL"
       ]
     },
     {
@@ -576,11 +576,11 @@
       "period": "Sep 2024",
       "periodEnd": "Jul 2025",
       "bullets": [
-        "Automated Python workflows connecting AWS S3, SFTP, and enterprise systems; processed 200+ files daily, increasing throughput by 40% and eliminating 15 hrs/week of manual processing.",
-        "Integrated Sterling File Gateway with 5+ enterprise systems, enforcing validation, exception routing, and SOX-compliant data lineage that lowered cross-system errors by 35%.",
-        "Established monitoring and recovery with CloudWatch, PagerDuty, and Airflow across 12+ production workflows, maintaining 99.8% uptime and reducing incident resolution time by 25%.",
-        "Refactored 20+ SQL queries using CTEs and window functions and redesigned 4 schemas, decreasing query latency by 30% and storage overhead by 20%.",
-        "Instituted regression tests, CI/CD checks, and deployment validation across 15+ workflows, cutting post-release defects by 40%."
+        "Engineered Python-based AWS S3 and SFTP data workflows processing 200+ files daily, increasing throughput by 40% and eliminating 15+ hours of manual processing per week.",
+        "Integrated Sterling File Gateway with 5+ enterprise systems, implementing validation, exception routing, and reliable file-handling workflows that reduced cross-system errors by 35%.",
+        "Built monitoring and recovery workflows using AWS CloudWatch, PagerDuty, and Airflow across 12+ production workflows, maintaining 99.8% uptime and reducing incident resolution time by 25%.",
+        "Optimized 20+ SQL queries using CTEs and window functions and redesigned 4 database schemas, reducing query latency by 30% and storage overhead by 20%.",
+        "Implemented regression testing and deployment checks across 15+ workflows, reducing post-release defects by 40%."
       ],
       "desc": "Senior software engineering for backend, cloud ingestion, enterprise integration, monitoring, and production reliability.",
       "tech": [
@@ -598,20 +598,20 @@
     {
       "id": 5,
       "role": "Software Engineer",
-      "company": "Freelance",
-      "companyShort": "FREELANCE",
+      "company": "Freelancer.com",
+      "companyShort": "FREELANCER",
       "type": "Contract",
       "location": "Remote",
       "period": "Aug 2022",
       "periodEnd": "Aug 2024",
       "bullets": [
-        "Created Python/SQL applications and ingestion pipelines handling 500K+ records across 10+ data sources, accelerating execution by 45% through vectorized transformations.",
-        "Restructured relational schemas and indexing strategies for 8 datasets, achieving 60% faster queries across 3 enterprise clients.",
-        "Delivered 15+ client applications, reporting interfaces, and Tableau/Power BI dashboards, translating requirements into reusable software components and decision-ready reporting.",
-        "Strengthened application workflows with validation, exception handling, and error recovery, maintaining 99.5% accuracy across 2M+ records.",
-        "Applied Python and SQL debugging, performance tuning, and application-level validation across client workflows, improving reliability and maintainability of delivered software."
+        "Developed Python and SQL applications processing 500K+ records across 10+ data sources, improving execution time by 45% through optimized transformations.",
+        "Designed and optimized relational database schemas and indexing strategies across 8 datasets, achieving 60% faster query performance for enterprise clients.",
+        "Delivered 15+ client applications, dashboards, and reporting interfaces using Python, SQL, Tableau, and Power BI, translating requirements into reusable software components.",
+        "Implemented application-level validation and error-recovery workflows across 2M+ records, maintaining 99.5% data accuracy.",
+        "Debugged and optimized Python and SQL workflows across client applications, improving reliability, performance, and maintainability."
       ],
-      "desc": "Python applications, database design, analytics interfaces, and production software for enterprise clients.",
+      "desc": "Python applications, database design, dashboards, and production software for enterprise clients.",
       "tech": [
         "Python",
         "SQL",

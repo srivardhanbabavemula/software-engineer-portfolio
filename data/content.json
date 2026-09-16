@@ -6,7 +6,7 @@
     "taglineHighlight": "AI-enabled software",
     "freelanceNote": "Open to Relocate Anywhere in the USA — backend, cloud, data systems, and AI software roles.",
     "availableLabel": "Open to relocate anywhere in the USA",
-    "pills": ["Python & Java", "REST APIs", "AWS & Azure", "PySpark & ML"],
+    "pills": ["Python & SQL", "REST APIs", "AWS & Azure", "PySpark & ML"],
     "specialistStat": { "value": "Backend + AI", "label": "Engineer" }
   },
   "interstitial": {
