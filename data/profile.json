@@ -522,25 +522,27 @@
     },
     {
       "id": 2,
-      "role": "Student Library Assistant",
+      "role": "Resource Sharing & Collection Maintenance Assistant",
       "company": "University at Buffalo",
       "companyShort": "UB LIBRARY",
       "type": "Part-time",
       "location": "Buffalo, NY",
-      "period": "Mar 2026",
+      "period": "Apr 2026",
       "periodEnd": "Present",
       "bullets": [
-        "Managed document delivery workflows including scanning, processing, and distribution of materials.",
-        "Assisted users with library systems, technology tools, and service workflows.",
-        "Maintained accuracy through detailed record-keeping and verification processes.",
-        "Handled high-volume requests ensuring timely fulfillment and organized processing."
+        "Support daily library operations by organizing, maintaining, and accurately processing library materials and collections.",
+        "Assist with resource sharing activities, including locating, handling, and routing materials to support timely access for students, faculty, and staff.",
+        "Maintain accurate records and follow established procedures to ensure collection accuracy and efficient workflows.",
+        "Collaborate with library staff and student employees to resolve resource-related issues and keep operations running smoothly.",
+        "Develop strong attention to detail, organization, communication, and time-management skills while working in a service-oriented academic environment."
       ],
-      "desc": "Campus library operations, document delivery, and user support.",
+      "desc": "Library operations, resource sharing, and collection maintenance at University at Buffalo.",
       "tech": [
         "Operations",
         "Record Keeping",
-        "Customer Service",
-        "Document Processing"
+        "Resource Sharing",
+        "Collection Maintenance",
+        "Customer Service"
       ]
     },
     {
