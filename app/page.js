@@ -68,6 +68,23 @@ export default function Home() {
       })
     }
 
+    function resetPanels(targetTop, forward) {
+      let top = 0
+      for (const section of el.firstElementChild.children) {
+        const h = section.offsetHeight
+        if (targetTop >= top - 2 && targetTop < top + h - 2) {
+          if (section.offsetHeight > el.clientHeight + 4) return
+          section.querySelectorAll('*').forEach((node) => {
+            if (node.scrollHeight <= node.clientHeight + 4) return
+            if (!/auto|scroll/.test(window.getComputedStyle(node).overflowY)) return
+            node.scrollTop = forward ? 0 : node.scrollHeight
+          })
+          return
+        }
+        top += h
+      }
+    }
+
     function goTo(idx) {
       if (idx >= TOTAL) idx = 0
       if (idx < 0)      idx = TOTAL - 1
@@ -84,11 +101,15 @@ export default function Home() {
         return
       }
 
+      const forward = idx > idxRef.current
+      const target = getScrollTopForIdx(idx)
+      resetPanels(target, forward)
+
       idxRef.current = idx
       busyRef.current = true
       tweenRef.current?.kill()
       tweenRef.current = gsap.to(el, {
-        scrollTop: getScrollTopForIdx(idx),
+        scrollTop: target,
         duration: 0.85,
         ease: 'power3.inOut',
         onUpdate: () => ScrollTrigger.update(),
@@ -106,32 +127,51 @@ export default function Home() {
     }
 
     let touchY = 0
+    let touchX = 0
     const touchThreshold = window.matchMedia('(max-width: 767px)').matches ? 52 : 40
+
+    let panel = null
+    let panelAtTop = true
+    let panelAtBottom = true
 
     function onTouchStart(e) {
       touchY = e.touches[0].clientY
+      touchX = e.touches[0].clientX
       touchTargetRef.current = e.target
+      panel = findScrollableAncestor(e.target, el)
+      panelAtTop    = !panel || panel.scrollTop <= 2
+      panelAtBottom = !panel || panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2
+    }
+
+    // Native momentum scrolling of <main> fights the GSAP snap tween and leaves sticky
+    // sections half-stacked, so only inner scrollable panels may scroll natively.
+    function onTouchMove(e) {
+      if (!e.cancelable) return
+      const dy = touchY - e.touches[0].clientY
+      const dx = touchX - e.touches[0].clientX
+      if (Math.abs(dx) > Math.abs(dy)) return
+
+      if (panel) {
+        const atTop    = panel.scrollTop <= 2
+        const atBottom = panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2
+        if ((dy > 0 && !atBottom) || (dy < 0 && !atTop)) return
+      }
+      e.preventDefault()
     }
 
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < touchThreshold || busyRef.current) return
+      const dx = touchX - e.changedTouches[0].clientX
+      if (Math.abs(dy) < touchThreshold || Math.abs(dx) > Math.abs(dy) || busyRef.current) return
 
-      const scrollable = touchTargetRef.current
-        ? findScrollableAncestor(touchTargetRef.current, el)
-        : null
-
-      if (scrollable) {
-        const atTop    = scrollable.scrollTop <= 2
-        const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 2
-        if (dy > 0 && !atBottom) return
-        if (dy < 0 && !atTop) return
-      }
+      // Leave the section only if the inner panel was already at its edge when the swipe began.
+      if (dy > 0 && !panelAtBottom) return
+      if (dy < 0 && !panelAtTop) return
 
       const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 8
       const atTop    = el.scrollTop < 8
       if (dy > 0 && atBottom) { fadeLoop(0, 0); return }
-      if (dy < 0 && atTop)    { fadeLoop(getScrollTopForIdx(TOTAL - 1), TOTAL - 1); return }
+      if (dy < 0 && atTop)    return
       goTo(idxRef.current + (dy > 0 ? 1 : -1))
     }
 
@@ -152,6 +192,7 @@ export default function Home() {
     el.addEventListener('wheel',  onWheel,  { passive: false })
     el.addEventListener('scroll', onScroll, { passive: true  })
     el.addEventListener('touchstart', onTouchStart, { passive: true })
+    el.addEventListener('touchmove',  onTouchMove,  { passive: false })
     el.addEventListener('touchend',   onTouchEnd,   { passive: true })
     window.addEventListener('navigate-section', onNavigate)
     window.addEventListener('footer-loop-back', onFooterLoop)
@@ -179,6 +220,7 @@ export default function Home() {
       window.removeEventListener('navigate-section', onNavigate)
       window.removeEventListener('footer-loop-back', onFooterLoop)
       el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchmove',  onTouchMove)
       el.removeEventListener('touchend',   onTouchEnd)
       window.removeEventListener('resize', onResize)
       window.removeEventListener('orientationchange', syncViewport)
@@ -199,7 +241,7 @@ export default function Home() {
         style={{
           position: 'fixed',
           inset: 0,
-          background: '#000',
+          background: 'var(--canvas)',
           zIndex: 9999,
           opacity: 0,
           pointerEvents: 'none',
