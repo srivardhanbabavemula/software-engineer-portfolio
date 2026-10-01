@@ -1,6 +1,6 @@
 .section {
   height: var(--section-h);
-  background: linear-gradient(165deg, #f1f5f9 0%, #e2e8f0 55%, #cbd5e1 100%);
+  background: linear-gradient(165deg, var(--canvas) 0%, var(--canvas-2) 55%, var(--hero-mid) 100%);
   display: flex;
   flex-direction: column;
   padding: clamp(4.5rem, 8vh, 6rem) clamp(1.5rem, 5vw, 4rem) clamp(2rem, 4vh, 3rem);
@@ -16,11 +16,17 @@
   position: absolute;
   bottom: -0.06em;
   right: -0.04em;
+  z-index: 1;
+  font-family: var(--font-display), sans-serif;
   font-size: clamp(3.5rem, 9vw, 10rem);
-  font-weight: 900;
-  color: rgba(15, 23, 42, 0.04);
+  font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1;
+  background: var(--aurora-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.06;
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -29,31 +35,34 @@
 .header {
   margin-bottom: 1rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .label {
-  font-size: 0.58rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .title {
+  font-family: var(--font-display), sans-serif;
   font-size: clamp(2rem, 4.5vw, 3.2rem);
-  font-weight: 900;
-  color: var(--text-primary);
+  font-weight: 800;
+  color: var(--ink);
   letter-spacing: -0.03em;
+  line-height: 1.05;
   margin: 0.35rem 0 0.5rem;
 }
 
 .subtitle {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.86rem;
+  color: var(--muted);
   margin: 0;
   max-width: 52rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .list {
@@ -62,42 +71,60 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.7rem;
+  padding: 6px 4px 1rem;
+  margin: -6px -4px 0;
   scrollbar-width: thin;
-  scrollbar-color: rgba(247, 147, 30, 0.3) transparent;
+  scrollbar-color: var(--accent-glow) transparent;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
+/* Glass list row */
 .card {
-  background: var(--surface-glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-left: 3px solid var(--accent);
-  border-radius: 0.85rem;
-  padding: 1rem 1.15rem;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: 1.05rem 1.25rem;
+  box-shadow: var(--glass-shadow);
+  transition:
+    translate 0.45s var(--ease-calm),
+    box-shadow 0.45s var(--ease-calm),
+    background 0.45s var(--ease-calm);
 }
 
+/* `translate` (not `transform`) so it composes with GSAP's inline transform */
 .card:hover {
-  transform: translateX(4px);
-  box-shadow: var(--shadow-lift);
+  translate: 0 -4px;
+  background: var(--glass-strong);
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .cardHead {
   display: flex;
-  gap: 0.85rem;
+  gap: 0.9rem;
   align-items: flex-start;
 }
 
+/* Gradient index chip */
 .num {
   flex-shrink: 0;
-  font-size: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.68rem;
   font-weight: 800;
-  color: var(--accent);
-  font-family: var(--font-geist-mono), monospace;
-  padding-top: 0.15rem;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: var(--aurora-text);
+  box-shadow: 0 6px 16px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .headBody {
@@ -108,53 +135,72 @@
 .badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.4rem;
   margin-bottom: 0.35rem;
 }
 
 .category {
+  font-family: var(--font-display), sans-serif;
   font-size: 0.58rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .type {
-  font-size: 0.58rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.56rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--sage-deep);
+  background: rgba(143, 191, 159, 0.16);
+  border: 1px solid rgba(143, 191, 159, 0.3);
+  border-radius: 999px;
+  padding: 0.16rem 0.5rem;
 }
 
 .cardTitle {
+  font-family: var(--font-display), sans-serif;
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);
   font-weight: 800;
-  color: var(--text-primary);
+  color: var(--ink);
   margin: 0 0 0.25rem;
   letter-spacing: -0.02em;
+  line-height: 1.3;
 }
 
 .org {
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-size: 0.86rem;
+  color: var(--muted);
   margin: 0;
   line-height: 1.45;
 }
 
 .bullets {
-  margin: 0.65rem 0 0 2.1rem;
-  padding: 0;
+  margin: 0.65rem 0 0 2.9rem;
+  padding: 0 0 0 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
 .bullets li {
-  font-size: 0.76rem;
-  line-height: 1.5;
-  color: var(--text-primary);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.bullets li::marker {
+  color: var(--lavender);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover { translate: none; }
 }
 
 @media (max-width: 767px) {
@@ -166,10 +212,13 @@
 
   .section::before { font-size: clamp(2rem, 12vw, 3.5rem); }
 
-  .subtitle { font-size: 0.72rem; }
+  .subtitle { font-size: 0.74rem; }
   .title { font-size: clamp(1.65rem, 6vw, 2.2rem); }
-  .bullets { margin-left: 1.5rem; }
-  .card { padding: 0.85rem 1rem; }
+  .card { padding: 0.85rem 0.95rem; border-radius: 16px; }
+  .cardHead { gap: 0.7rem; }
+  .num { width: 1.7rem; height: 1.7rem; font-size: 0.6rem; }
+  .bullets { margin-left: 0.4rem; }
+  .bullets li { font-size: 0.74rem; }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -179,4 +228,11 @@
 @media (orientation: landscape) and (max-height: 540px) {
   .section { overflow-y: auto; }
   .title { font-size: clamp(1.2rem, 5vh, 1.7rem); }
+  .subtitle { font-size: 0.7rem; line-height: 1.45; }
+  .header { margin-bottom: 0.5rem; }
+  .list { gap: 0.5rem; }
+  .card { padding: 0.6rem 0.8rem; border-radius: 14px; }
+  .num { width: 1.6rem; height: 1.6rem; font-size: 0.58rem; }
+  .bullets { margin-top: 0.4rem; }
+  .bullets li { font-size: 0.7rem; line-height: 1.45; }
 }

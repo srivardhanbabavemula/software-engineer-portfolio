@@ -136,12 +136,17 @@ export default function VideoIntro() {
 
       {!isMobile && <CinematicLayer />}
 
+      <div className={styles.bottomFade} aria-hidden />
+
       <div className={styles.heroContent}>
-        <p ref={greetRef} className={styles.eyebrow}>{content.site.tagline}</p>
+        <p ref={greetRef} className={styles.eyebrow}>
+          <span className={styles.eyebrowLine} aria-hidden />
+          {content.site.tagline}
+        </p>
         <h1 ref={nameRef} className={styles.name}>
-          {profile.name.first}<br />
-          <span className={styles.nameMiddle}>{profile.name.middle}</span>{' '}
-          {profile.name.last}
+          <span className={styles.nameLine}>{profile.name.first}</span>
+          <span className={styles.nameMiddle}>{profile.name.middle}</span>
+          <span className={styles.nameLine}>{profile.name.last}</span>
         </h1>
         <p ref={roleRef} className={styles.role}>{profile.roles.detailed}</p>
         <p className={styles.detailLine}>
@@ -160,7 +165,7 @@ export default function VideoIntro() {
       )}
 
       {showHint && (
-        <div ref={hintRef} className={styles.soundHint} onClick={toggleMute} style={{ pointerEvents: 'all', cursor: 'pointer' }}>
+        <div ref={hintRef} className={styles.soundHint} onClick={toggleMute}>
           <span className={styles.soundPulse} />
           <span>Tap for sound</span>
         </div>

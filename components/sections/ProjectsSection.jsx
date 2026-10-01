@@ -3,11 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/ProjectsSection.module.css'
 
 const PROJECTS = profile.projects
 const DESKTOP_MQ = '(min-width: 1024px)'
+const pad2 = (n) => String(n).padStart(2, '0')
 
 export default function ProjectsSection() {
   const sectionRef  = useRef(null)
@@ -73,7 +75,7 @@ export default function ProjectsSection() {
           scaleX: progress, transformOrigin: 'left center', overwrite: true,
         })
       }
-      if (counterRef.current) counterRef.current.textContent = `0${activeIdx + 1}`
+      if (counterRef.current) counterRef.current.textContent = pad2(activeIdx + 1)
     }
 
     if (isDesktop) {
@@ -198,12 +200,14 @@ export default function ProjectsSection() {
     >
       <section ref={sectionRef} className={styles.section}>
 
+        <AuroraLayer variant="cool" />
+
         <div className={styles.topBar}>
           <span className={styles.sectionLabel}>Featured Work</span>
           <div className={styles.counter}>
             <span ref={counterRef} className={styles.cCur}>01</span>
             <span className={styles.cSep}> / </span>
-            <span className={styles.cTot}>0{PROJECTS.length}</span>
+            <span className={styles.cTot}>{pad2(PROJECTS.length)}</span>
           </div>
         </div>
 
@@ -234,19 +238,20 @@ export default function ProjectsSection() {
                   </div>
                 </div>
               )}
-              <span className={styles.slideNum} aria-hidden>0{i + 1}</span>
-
               <div
                 ref={el => { contentRefs.current[i] = el }}
                 className={styles.slideContent}
               >
                 <div className={styles.meta}>
+                  <span className={styles.index} aria-hidden>{pad2(i + 1)}</span>
                   <span className={styles.typeTag}>{proj.type}</span>
                 </div>
                 <h2 className={styles.title}>{proj.title}</h2>
                 <p className={styles.subtitle}>{proj.subtitle}</p>
                 <p className={styles.desc}>{proj.desc}</p>
-                {proj.context && <p className={styles.context}>{proj.context}</p>}
+                {proj.context && proj.context !== proj.desc && (
+                  <p className={styles.context}>{proj.context}</p>
+                )}
                 <div className={styles.stack}>
                   {proj.tech.map(t => (
                     <span key={t} className={styles.tag}>{t}</span>
@@ -269,15 +274,17 @@ export default function ProjectsSection() {
                 ref={el => { visualRefs.current[i] = el }}
                 className={styles.visualPanel}
               >
-                <Image
-                  src={proj.image}
-                  alt={`${proj.title} cover`}
-                  fill
-                  quality={95}
-                  className={styles.visualImg}
-                  sizes="(min-width: 1024px) 45vw, 92vw"
-                  priority={i === 0}
-                />
+                <div className={styles.visualFrame}>
+                  <Image
+                    src={proj.image}
+                    alt={`${proj.title} cover`}
+                    fill
+                    quality={95}
+                    className={styles.visualImg}
+                    sizes="(min-width: 1024px) 45vw, 92vw"
+                    priority={i === 0}
+                  />
+                </div>
               </div>
             </div>
           ))}

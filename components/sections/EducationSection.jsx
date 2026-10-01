@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
-import ParallaxPhotoLayers from '@/components/ui/ParallaxPhotoLayers'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/EducationSection.module.css'
 
@@ -48,9 +48,7 @@ export default function EducationSection() {
 
   return (
     <section ref={sectionRef} className={styles.section} data-snap-index="3">
-      <ParallaxPhotoLayers
-        background={{ src: '/assets/photo-campus-wide.png', opacity: 0.1, blur: 6, position: 'center 25%' }}
-      />
+      <AuroraLayer variant="cool" />
 
       <div ref={headerRef} className={styles.header}>
         <span className={styles.label}>Academic Background</span>

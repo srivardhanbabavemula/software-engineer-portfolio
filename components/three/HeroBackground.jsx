@@ -16,12 +16,11 @@ function makeSprite() {
   return new THREE.CanvasTexture(c)
 }
 
-// Cool blue-white particles — professional portfolio palette
 const PALETTE = [
-  new THREE.Color('#ffffff'),
-  new THREE.Color('#e0e7ff'),
-  new THREE.Color('#bfdbfe'),
-  new THREE.Color('#93c5fd'),
+  new THREE.Color('#3b63e0'),
+  new THREE.Color('#7a7fe6'),
+  new THREE.Color('#9fcbf2'),
+  new THREE.Color('#4f8a6a'),
 ]
 
 function randColor() {
@@ -76,9 +75,9 @@ export default function HeroBackground() {
     g1.setAttribute('color',    new THREE.BufferAttribute(c1, 3))
 
     const m1 = new THREE.PointsMaterial({
-      size: 0.07, map: tex, vertexColors: true,
-      transparent: true, opacity: 0.7,
-      depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true,
+      size: 0.06, map: tex, vertexColors: true,
+      transparent: true, opacity: 0.45,
+      depthWrite: false, blending: THREE.NormalBlending, sizeAttenuation: true,
     })
     const pts1 = new THREE.Points(g1, m1)
     scene.add(pts1)
@@ -105,9 +104,9 @@ export default function HeroBackground() {
     g2.setAttribute('color',    new THREE.BufferAttribute(c2, 3))
 
     const m2 = new THREE.PointsMaterial({
-      size: 0.55, map: tex, vertexColors: true,
-      transparent: true, opacity: 0.15,
-      depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true,
+      size: 0.5, map: tex, vertexColors: true,
+      transparent: true, opacity: 0.08,
+      depthWrite: false, blending: THREE.NormalBlending, sizeAttenuation: true,
     })
     const pts2 = new THREE.Points(g2, m2)
     scene.add(pts2)

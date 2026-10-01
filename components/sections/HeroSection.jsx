@@ -8,7 +8,7 @@ import { IoLogoTableau } from 'react-icons/io5'
 import { FiArrowUpRight } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
 import { useFloatAnimation, useMouseParallax } from '@/lib/useMouseParallax'
-import ParallaxPhotoLayers from '@/components/ui/ParallaxPhotoLayers'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 
 import profile from '@/data/profile.json'
 import content from '@/data/content.json'
@@ -16,6 +16,7 @@ import { SECTION, scrollToSection } from '@/lib/sections'
 import styles from '@/styles/sections/HeroSection.module.css'
 
 const HeroBackground = dynamic(() => import('@/components/three/HeroBackground'), { ssr: false })
+const HeroOrb        = dynamic(() => import('@/components/three/HeroOrb'), { ssr: false })
 
 const SOCIAL_ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, Tableau: IoLogoTableau }
 const SIDEBAR_LABELS  = ['GitHub', 'LinkedIn', 'Tableau']
@@ -101,15 +102,13 @@ export default function HeroSection() {
   return (
     <section ref={sectionRef} className={styles.section} data-snap-index="1">
 
-      <ParallaxPhotoLayers
-        background={{ src: '/assets/photo-campus-wide.png', opacity: 0.32, blur: 4, position: 'center 20%' }}
-        midground={{ src: '/assets/photo-campus-night.png', opacity: 0.08, position: 'right bottom' }}
-      />
+      <AuroraLayer variant="hero" />
 
       <HeroBackground />
 
-      {/* Photo — foreground portrait */}
+      {/* Photo — foreground portrait over the 3D orb */}
       <div ref={photoRef} className={styles.photo}>
+        <HeroOrb className={styles.orb} />
         <div ref={photoInnerRef} className={styles.photoInner}>
           <div className={styles.photoGlow} aria-hidden />
           <Image
@@ -154,7 +153,10 @@ export default function HeroSection() {
 
         {/* Greeting */}
         <div className={styles.greeting}>
-          <p ref={greetRef} className={styles.greetText}>{"Hi, I'm"}</p>
+          <p ref={greetRef} className={styles.greetText}>
+            <span className={styles.greetDot} aria-hidden />
+            {"Hi, I'm"}
+          </p>
           <p ref={roleRef}  className={styles.roleText}>{profile.roles.short}</p>
         </div>
 

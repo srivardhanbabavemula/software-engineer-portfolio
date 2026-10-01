@@ -19,7 +19,7 @@ function createBokehTexture() {
   return new THREE.CanvasTexture(canvas)
 }
 
-const PALETTE = [0xe0e7ff, 0xbfdbfe, 0x93c5fd, 0x60a5fa, 0xffffff, 0xc7d2fe]
+const PALETTE = [0x9fcbf2, 0xb4a5ee, 0x8fbf9f, 0x3b63e0, 0xffffff, 0xd6dcf5]
 
 export default function CinematicLayer() {
   const canvasRef = useRef(null)

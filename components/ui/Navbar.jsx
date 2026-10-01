@@ -8,11 +8,16 @@ import {
   NavigationMenuLink,
 } from '@/components/ui/navigation-menu'
 import { gsap } from '@/lib/gsap'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
 import { NAV_ITEMS, SECTION, isNavItemActive, scrollToSection } from '@/lib/sections'
 import { getIdxFromScrollTop, getNavActiveIdx, getViewportHeight } from '@/lib/scrollSnap'
 import styles from '@/styles/ui/Navbar.module.css'
 import { FaBars, FaTimes } from 'react-icons/fa'
+
+const CITY          = (profile.location?.based ?? '').split(',')[0].trim()
+const RESUME_HREF   = profile.resume ?? '/assets/resume.pdf'
+const RESUME_NAME   = `${profile.name.full.replace(/\s+/g, '_')}_Resume.pdf`
 
 function getLocalTime() {
   return new Date().toLocaleTimeString('en-US', {
@@ -54,6 +59,13 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [menuOpen])
+
+  useEffect(() => {
     const scroller = document.querySelector('main') ?? window
 
     function showNavbar() {
@@ -73,7 +85,7 @@ export default function Navbar() {
       setOnDark(sectionIdx === SECTION.EXPERIENCE)
 
       if (delta > 8 && !hidden.current) {
-        gsap.to(headerRef.current, { y: '-100%', duration: 0.35, ease: 'power2.inOut' })
+        gsap.to(headerRef.current, { y: '-140%', duration: 0.35, ease: 'power2.inOut' })
         hidden.current = true
       } else if (delta < -6) {
         showNavbar()
@@ -97,10 +109,20 @@ export default function Navbar() {
     setMenuOpen(false)
   }
 
+  const headerClass = [
+    styles.header,
+    onIntro && !menuOpen ? styles.introMode : '',
+    onDark && !menuOpen ? styles.darkMode : '',
+    menuOpen ? styles.menuOpen : '',
+  ].filter(Boolean).join(' ')
+
   return (
     <>
-      <header ref={headerRef} className={`${styles.header} ${onIntro ? styles.introMode : ''} ${onDark ? styles.darkMode : ''}`}>
-        <span className={styles.time}>BUFFALO TIME - {time}</span>
+      <header ref={headerRef} className={headerClass}>
+        <span className={styles.time}>
+          <span className={styles.timeDot} aria-hidden />
+          {CITY ? `${CITY} · ` : ''}{time}
+        </span>
 
         <NavigationMenu className={styles.navMenu}>
           <NavigationMenuList className={styles.navList}>
@@ -112,7 +134,6 @@ export default function Navbar() {
                   <NavigationMenuLink
                     className={`${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}
                     onClick={() => handleNavClick(idx)}
-                    style={{ cursor: 'pointer' }}
                   >
                     {label}
                   </NavigationMenuLink>
@@ -122,65 +143,78 @@ export default function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <a
-          href={profile.resume ?? '/assets/resume.pdf'}
-          download="SriVardhan_Baba_Vemula_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${styles.emailBtn} rounded-full text-xs font-semibold px-5 h-8`}
-          style={{ marginRight: '0.5rem' }}
-        >
-          Resume
-        </a>
+        <div className={styles.actions}>
+          <a
+            href={RESUME_HREF}
+            download={RESUME_NAME}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.emailBtn}
+          >
+            Resume
+          </a>
 
-        <a
-          href={`mailto:${profile.email}`}
-          className={`${styles.emailBtn} rounded-full text-xs font-semibold px-5 h-8`}
-        >
-          Email me
-        </a>
+          <a
+            href={`mailto:${profile.email}`}
+            className={`${styles.emailBtn} ${styles.emailBtnPrimary}`}
+          >
+            Email me
+          </a>
 
-        <button
-          className={styles.hamburger}
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
-        </button>
+          <button
+            type="button"
+            className={styles.hamburger}
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
+          </button>
+        </div>
       </header>
 
       {menuOpen && (
-        <div className={styles.mobileMenu}>
-          {NAV_ITEMS.map(({ label, idx }) => {
-            const isActive = isNavItemActive(label, idx, activeIdx)
+        <div className={styles.mobileMenu} role="dialog" aria-modal="true" aria-label="Site navigation">
+          <AuroraLayer variant="hero" />
 
-            return (
-              <button
-                key={label}
-                className={`${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ''}`}
-                onClick={() => handleNavClick(idx)}
-              >
-                {label}
-              </button>
-            )
-          })}
-          <a
-            href={profile.resume ?? '/assets/resume.pdf'}
-            download="SriVardhan_Baba_Vemula_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.mobileMailLink}
-            onClick={() => setMenuOpen(false)}
-          >
-            Download Resume
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className={styles.mobileMailLink}
-            onClick={() => setMenuOpen(false)}
-          >
-            {profile.email}
-          </a>
+          <nav className={styles.mobileNav}>
+            {NAV_ITEMS.map(({ label, idx }, i) => {
+              const isActive = isNavItemActive(label, idx, activeIdx)
+
+              return (
+                <button
+                  key={label}
+                  type="button"
+                  className={`${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ''}`}
+                  onClick={() => handleNavClick(idx)}
+                  aria-current={isActive ? 'true' : undefined}
+                >
+                  <span className={styles.mobileNavNum}>0{i + 1}</span>
+                  <span className={styles.mobileNavLabel}>{label}</span>
+                </button>
+              )
+            })}
+          </nav>
+
+          <div className={styles.mobileFooter}>
+            <a
+              href={RESUME_HREF}
+              download={RESUME_NAME}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.mobileMailLink} ${styles.mobileResumeLink}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              Download Resume
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              className={styles.mobileMailLink}
+              onClick={() => setMenuOpen(false)}
+            >
+              {profile.email}
+            </a>
+          </div>
         </div>
       )}
     </>

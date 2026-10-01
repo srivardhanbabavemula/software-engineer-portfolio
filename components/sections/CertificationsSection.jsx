@@ -1,13 +1,15 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { FiArrowUpRight } from 'react-icons/fi'
+import { FiArrowUpRight, FiEye } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
 import profile from '@/data/profile.json'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import CertPreviewModal from '@/components/ui/CertPreviewModal'
 import styles from '@/styles/sections/CertificationsSection.module.css'
 
 const CERTS = profile.publications.filter(c => c.title !== 'Certificate of Skills Portfolio')
+const ISSUER_COUNT = new Set(CERTS.map(c => c.platform)).size
 
 export default function CertificationsSection() {
   const sectionRef = useRef(null)
@@ -25,14 +27,14 @@ export default function CertificationsSection() {
 
     function reset() {
       gsap.set(headerRef.current, { opacity: 0, y: 20 })
-      gsap.set(listRef.current?.children ?? [], { opacity: 0, x: -16 })
+      gsap.set(listRef.current?.children ?? [], { opacity: 0, y: 14 })
     }
 
     function play() {
       reset()
       gsap.to(headerRef.current, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' })
       gsap.to(listRef.current?.children ?? [], {
-        opacity: 1, x: 0, duration: 0.5, ease: 'power2.out', stagger: 0.04, delay: 0.12,
+        opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.03, delay: 0.12,
       })
     }
 
@@ -48,6 +50,20 @@ export default function CertificationsSection() {
     return () => scroller.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Let the wheel scroll the certificate list before the page scroller takes over.
+  useEffect(() => {
+    const list = listRef.current
+    if (!list) return
+    function onWheel(e) {
+      if (list.scrollHeight <= list.clientHeight + 4) return
+      const atTop    = list.scrollTop <= 1
+      const atBottom = list.scrollTop + list.clientHeight >= list.scrollHeight - 1
+      if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) e.stopPropagation()
+    }
+    list.addEventListener('wheel', onWheel, { passive: true })
+    return () => list.removeEventListener('wheel', onWheel)
+  }, [])
+
   function openCert(cert) {
     if (cert.certImage) setActiveCert(cert)
     else if (cert.link?.startsWith('http')) window.open(cert.link, '_blank', 'noopener,noreferrer')
@@ -56,13 +72,27 @@ export default function CertificationsSection() {
   return (
     <>
       <section ref={sectionRef} className={styles.section} data-snap-anchor="certifications">
-        <div ref={headerRef} className={styles.header}>
-          <span className={styles.label}>Credentials</span>
-          <h2 className={styles.title}>Certifications</h2>
+        <AuroraLayer variant="warm" />
+
+        <header ref={headerRef} className={styles.header}>
+          <span className={styles.eyebrow}>Credentials</span>
+          <h2 className={styles.title}>
+            Certifi&shy;cations <span className={styles.titleAccent}>&amp; learning</span>
+          </h2>
           <p className={styles.subtitle}>
-            {CERTS.length} professional certifications — click any entry to preview the certificate image.
+            Select any certificate to preview it and verify the credential.
           </p>
-        </div>
+          <div className={styles.stats}>
+            <div className={styles.statCard}>
+              <span className={styles.statValue}>{CERTS.length}</span>
+              <span className={styles.statLabel}>Certificates</span>
+            </div>
+            <div className={styles.statCard}>
+              <span className={styles.statValue}>{ISSUER_COUNT}</span>
+              <span className={styles.statLabel}>Issuers</span>
+            </div>
+          </div>
+        </header>
 
         <div ref={listRef} className={styles.list}>
           {CERTS.map((cert, i) => (
@@ -73,13 +103,13 @@ export default function CertificationsSection() {
               onClick={() => openCert(cert)}
             >
               <span className={styles.num}>{String(i + 1).padStart(2, '0')}</span>
-              <div className={styles.body}>
-                <h3 className={styles.cardTitle}>{cert.title}</h3>
-                <p className={styles.platform}>{cert.platform} · {cert.year}</p>
-                <p className={styles.desc}>{cert.desc}</p>
-              </div>
-              <span className={styles.arrow}>
-                {cert.certImage ? 'Preview' : <FiArrowUpRight />}
+              <span className={styles.body}>
+                <span className={styles.cardTitle}>{cert.title}</span>
+                <span className={styles.platform}>{cert.platform} · {cert.year}</span>
+                <span className={styles.desc}>{cert.desc}</span>
+              </span>
+              <span className={styles.action} aria-hidden>
+                {cert.certImage ? <FiEye /> : <FiArrowUpRight />}
               </span>
             </button>
           ))}
