@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Baloo_2, Dancing_Script } from "next/font/google";
+import { Geist, Geist_Mono, Plus_Jakarta_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/ui/Cursor";
 import { SITE_URL } from '@/lib/siteConfig';
@@ -14,16 +14,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const baloo = Baloo_2({
-  variable: "--font-baloo",
+const display = Plus_Jakarta_Sans({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "600", "800"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const dancing = Dancing_Script({
-  variable: "--font-dancing",
+const serif = Instrument_Serif({
+  variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const description =
@@ -34,7 +35,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
-  themeColor: '#0f172a',
+  themeColor: '#faf8f4',
 }
 
 export const metadata = {
@@ -115,9 +116,9 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${baloo.variable} ${dancing.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} ${serif.variable} h-full antialiased`}
     >
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${baloo.variable} ${dancing.variable} h-full antialiased`}>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${display.variable} ${serif.variable} h-full antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

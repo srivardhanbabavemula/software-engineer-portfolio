@@ -7,6 +7,7 @@ import * as THREE from 'three'
 import { gsap } from '@/lib/gsap'
 import { FaLinkedinIn, FaEnvelope, FaPhone } from 'react-icons/fa'
 import { FiArrowUpRight, FiChevronDown } from 'react-icons/fi'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
 import content from '@/data/content.json'
 import { SECTION, scrollToSection } from '@/lib/sections'
@@ -39,6 +40,8 @@ const MOBILE_CONTACT_ICONS = {
   'Email (Personal)': <FaEnvelope size={20} />,
   Phone: <FaPhone size={20} />,
 }
+
+const INITIALS = `${profile.name.first?.[0] ?? ''}${profile.name.last?.[0] ?? ''}`.toUpperCase()
 
 function getGreeting() {
   const h = new Date().getHours()
@@ -76,15 +79,14 @@ const VID_FRAG = `
     }
     vec4 tex = texture2D(uVideo, uv);
     float fadeY =
-      smoothstep(0.0, 0.05, uv.y) *
-      smoothstep(1.0, 0.95, uv.y);
-    float alpha = fadeY * uOpacity;
+      smoothstep(0.0, 0.08, uv.y) *
+      smoothstep(1.0, 0.92, uv.y);
     float lum = dot(tex.rgb, vec3(0.299, 0.587, 0.114));
-    vec3 col = mix(vec3(lum), tex.rgb, 0.72);
-    float vx = smoothstep(0.0, 0.38, abs(uv.x - 0.5) * 2.0);
-    vec3 dark = vec3(0.008, 0.008, 0.008);
-    col = mix(col, dark, vx * 0.82);
-    col *= 0.68;
+    vec3 col = mix(vec3(lum), tex.rgb, 0.78);
+    float vx = smoothstep(0.0, 0.42, abs(uv.x - 0.5) * 2.0);
+    vec3 ivory = vec3(0.980, 0.973, 0.957);
+    col = mix(col, ivory, 0.06);
+    float alpha = fadeY * uOpacity * (1.0 - vx * 0.92);
     gl_FragColor = vec4(col, alpha);
   }
 `
@@ -336,6 +338,8 @@ export default function PublicationsFooterSection() {
     <div ref={wrapperRef} className={styles.wrapper} data-snap-anchor="footer">
       <div ref={stickyRef} className={styles.sticky}>
 
+        <AuroraLayer variant="calm" />
+
         {/* -- Video canvas (footer background - desktop) -- */}
         <canvas ref={canvasRef} className={styles.glCanvas} />
         <video ref={videoSrcRef} className={styles.hiddenVideo} />
@@ -353,7 +357,7 @@ export default function PublicationsFooterSection() {
           />
         </div>
 
-        {/* -- Mobile permanent dark overlay - keeps image visually identical across all 3 sections -- */}
+        {/* -- Mobile permanent ivory wash - keeps image visually identical across all 3 sections -- */}
         <div className={styles.mobileDarkOverlay} aria-hidden />
 
         {/* -- Floating image: starts left, moves to center -- */}
@@ -376,7 +380,9 @@ export default function PublicationsFooterSection() {
 
           <div className={styles.pubHero}>
             <p  ref={labelRef}   className={styles.label}>Impact</p>
-            <h2 ref={headingRef} className={styles.heading}>Key Highlights</h2>
+            <h2 ref={headingRef} className={styles.heading}>
+              Key <span className={styles.headingAccent}>highlights</span>
+            </h2>
           </div>
 
           <div ref={dividerRef} className={styles.divider} />
@@ -391,7 +397,7 @@ export default function PublicationsFooterSection() {
                 ref={el => { itemRefs.current[i] = el }}
                 className={styles.item}
               >
-                <div className={styles.num}>0{i + 1}.</div>
+                <div className={styles.num}>0{i + 1}</div>
                 <div className={styles.itemBody}>
                   <div className={styles.itemTop}>
                     <h3 className={styles.title}>{pub.title}</h3>
@@ -458,12 +464,12 @@ export default function PublicationsFooterSection() {
           <div className={styles.mobileLayout}>
             <div className={styles.mobileBrand}>
               <span className={styles.mobileRoleDot} />
-              <span className={styles.mobileRoleText}>{profile.roles.short.toUpperCase()}</span>
+              <span className={styles.mobileRoleText}>{profile.roles.short}</span>
             </div>
             <h2 className={styles.mobileName}>
-              {profile.name.first.toUpperCase()}
+              {profile.name.first}
               <br />
-              <span className={styles.mobileNameGhost}>{profile.name.last.toUpperCase()}</span>
+              <span className={styles.mobileNameGhost}>{profile.name.last}</span>
             </h2>
             <p className={styles.mobileDesc}>{profile.description}</p>
             <div className={styles.mobileCtas}>
@@ -483,7 +489,7 @@ export default function PublicationsFooterSection() {
                     aria-label={item.label}
                   >
                     <span className={styles.mobileSocialIconEl}>{MOBILE_CONTACT_ICONS[item.label]}</span>
-                    <span className={styles.mobileSocialLabelEl}>{item.label.toUpperCase()}</span>
+                    <span className={styles.mobileSocialLabelEl}>{item.label}</span>
                   </a>
                 </Fragment>
               ))}
@@ -548,7 +554,7 @@ export default function PublicationsFooterSection() {
                   <span className={styles.ctaAccent}>{content.footer.ctaAccent}</span>
                 </p>
                 <a href={`mailto:${profile.email}`} className={styles.talkBtn}>
-                  Let&apos;s talk
+                  Let&apos;s talk <FiArrowUpRight />
                 </a>
               </div>
             </div>
@@ -556,29 +562,29 @@ export default function PublicationsFooterSection() {
           </div>
 
           <div ref={bigNameRef} className={styles.signatureWrap}>
-            <h2 className={styles.signatureText}>{profile.name.full.toUpperCase()}</h2>
+            <h2 className={styles.signatureText}>{profile.name.full}</h2>
           </div>
 
           <div ref={bottomBarRef} className={styles.bottomBar}>
             <div className={styles.bottomLeft}>
               <div className={styles.monogram}>
-                <span className={styles.monoLetters}>SV</span>
+                <span className={styles.monoLetters}>{INITIALS}</span>
                 <span className={styles.monoDot} />
               </div>
               <span className={styles.leftDivider} />
               <div className={styles.copyBlock}>
-                <p className={styles.copy}>© {year} {profile.name.full.toUpperCase()}</p>
-                <p className={styles.copyAll}>ALL RIGHTS RESERVED</p>
+                <p className={styles.copy}>© {year} {profile.name.full}</p>
+                <p className={styles.copyAll}>All rights reserved</p>
               </div>
             </div>
             <div className={styles.bottomRight}>
               <span className={styles.builtWith}>
-                DESIGNED &amp; DEVELOPED
+                Designed &amp; developed
                 <br />
-                WITH PRECISION.
+                with care.
               </span>
               <span className={styles.barDivider} />
-              <span className={styles.sunIcon}>*</span>
+              <span className={styles.sunIcon} aria-hidden>✦</span>
             </div>
           </div>
         </div>

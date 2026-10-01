@@ -2,7 +2,9 @@
 
 import { useRef } from 'react'
 import { gsap } from '@/lib/gsap'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
+import content from '@/data/content.json'
 import styles from '@/styles/sections/ScreenLoader.module.css'
 
 export default function ScreenLoader({ onDismiss }) {
@@ -92,18 +94,34 @@ export default function ScreenLoader({ onDismiss }) {
 
   return (
     <div ref={overlayRef} className={styles.overlay}>
-      <div className={styles.liquidBg} aria-hidden />
+      <AuroraLayer variant="hero" />
 
-      <p className={styles.monogram}>
-        {profile.name.full.toUpperCase()}
-      </p>
+      <div className={styles.inner}>
+        <p className={styles.eyebrow}>{content.site.tagline}</p>
 
-      <button
-        className={styles.startBtn}
-        onClick={handleStart}
-      >
-        Start
-      </button>
+        <p className={styles.monogram}>
+          <span className={styles.nameLine}>{profile.name.first}</span>
+          {profile.name.middle && (
+            <span className={styles.nameMiddle}>{profile.name.middle}</span>
+          )}
+          <span className={styles.nameLine}>{profile.name.last}</span>
+        </p>
+
+        <p className={styles.role}>{profile.roles.short}</p>
+
+        <div className={styles.progress} aria-hidden>
+          <span className={styles.progressFill} />
+        </div>
+
+        <button
+          type="button"
+          className={styles.startBtn}
+          onClick={handleStart}
+        >
+          <span className={styles.startDot} aria-hidden />
+          Start
+        </button>
+      </div>
     </div>
   )
 }

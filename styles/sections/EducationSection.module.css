@@ -1,12 +1,13 @@
 .section {
   height: var(--section-h);
-  background: linear-gradient(160deg, #f0f9ff 0%, #eef2ff 50%, #f8fafc 100%);
+  background: linear-gradient(160deg, var(--canvas) 0%, var(--hero-end) 55%, var(--canvas-2) 100%);
   display: flex;
   flex-direction: column;
   padding: clamp(4.5rem, 8vh, 6rem) clamp(1.5rem, 5vw, 4rem) clamp(2rem, 4vh, 3rem);
   overflow: hidden;
   position: relative;
   z-index: 3;
+  isolation: isolate;
 }
 
 .section::before {
@@ -14,11 +15,17 @@
   position: absolute;
   bottom: -0.06em;
   right: -0.04em;
+  z-index: 1;
+  font-family: var(--font-display), sans-serif;
   font-size: clamp(4rem, 10vw, 11rem);
-  font-weight: 900;
-  color: rgba(37, 99, 235, 0.05);
+  font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1;
+  background: var(--aurora-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.07;
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -27,60 +34,97 @@
 .header {
   margin-bottom: 1.25rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .label {
-  font-size: 0.58rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 .title {
+  font-family: var(--font-display), sans-serif;
   font-size: clamp(2rem, 4.5vw, 3.2rem);
-  font-weight: 900;
-  color: var(--text-primary);
+  font-weight: 800;
+  color: var(--ink);
   letter-spacing: -0.03em;
+  line-height: 1.05;
   margin: 0.35rem 0 0.5rem;
 }
 
 .subtitle {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.86rem;
+  color: var(--muted);
   margin: 0;
   max-width: 52rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: 1rem;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  padding: 6px 4px 1rem;
+  margin: -6px -4px 0;
   scrollbar-width: thin;
-  scrollbar-color: rgba(37, 99, 235, 0.25) transparent;
+  scrollbar-color: var(--accent-glow) transparent;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   align-content: start;
 }
 
+/* Glass card with a gradient timeline rail + node */
 .card {
-  background: var(--surface-glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.92);
-  border-radius: 1rem;
-  padding: 1.1rem 1.2rem;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1.35rem 1.25rem 2.5rem;
+  box-shadow: var(--glass-shadow);
+  transition:
+    translate 0.45s var(--ease-calm),
+    box-shadow 0.45s var(--ease-calm),
+    background 0.45s var(--ease-calm);
 }
 
+.card::before {
+  content: '';
+  position: absolute;
+  left: 1.2rem;
+  top: 1.9rem;
+  bottom: 1.25rem;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--lavender) 50%, var(--sage) 100%);
+  opacity: 0.45;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  left: calc(1.2rem - 4px);
+  top: 1.45rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--aurora-text);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* `translate` (not `transform`) so it composes with GSAP's inline transform */
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
+  translate: 0 -4px;
+  background: var(--glass-strong);
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .cardTop {
@@ -92,82 +136,106 @@
 }
 
 .degree {
+  font-family: var(--font-display), sans-serif;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   font-weight: 800;
-  color: var(--text-primary);
+  color: var(--ink);
   margin: 0 0 0.25rem;
   letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
 .school {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--accent);
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  font-weight: 400;
+  color: var(--ink-soft);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .badge {
   flex-shrink: 0;
+  font-family: var(--font-display), sans-serif;
   font-size: 0.58rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--accent);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent) 0%, #7a7fe6 100%);
   border-radius: 999px;
-  padding: 0.35rem 0.65rem;
+  padding: 0.38rem 0.7rem;
+  box-shadow: 0 6px 16px var(--accent-glow);
 }
 
 .meta {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  width: fit-content;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   margin: 0 0 0.85rem;
-  font-family: var(--font-geist-mono), monospace;
+  background: var(--aurora-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .list {
-  margin: 0 0 0.85rem;
-  padding-left: 1.1rem;
+  margin: 0 0 0.9rem;
+  padding-left: 1.05rem;
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
 }
 
 .list li {
-  font-size: 0.78rem;
-  line-height: 1.55;
-  color: var(--text-primary);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.list li::marker {
+  color: var(--lavender);
 }
 
 .coursework {
   margin-top: 0.25rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
 }
 
 .courseLabel {
-  font-size: 0.58rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 0.5rem;
+  color: var(--accent);
+  margin: 0 0 0.55rem;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.38rem;
 }
 
 .tag {
+  font-family: var(--font-display), sans-serif;
   font-size: 0.68rem;
   font-weight: 600;
-  color: var(--text-primary);
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.16);
+  color: var(--ink-soft);
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
   border-radius: 999px;
-  padding: 0.25rem 0.6rem;
+  padding: 0.28rem 0.7rem;
+  box-shadow: 0 2px 10px rgba(16, 27, 45, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover { translate: none; }
 }
 
 @media (max-width: 767px) {
@@ -179,10 +247,14 @@
 
   .section::before { font-size: clamp(2.5rem, 14vw, 4rem); }
 
-  .grid { grid-template-columns: 1fr; }
-  .subtitle { font-size: 0.72rem; }
+  .grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .subtitle { font-size: 0.74rem; }
   .title { font-size: clamp(1.65rem, 6vw, 2.2rem); }
-  .card { padding: 0.95rem 1rem; }
+  .card { padding: 1rem 1rem 1rem 2.1rem; border-radius: 16px; }
+  .card::before { left: 1rem; top: 1.6rem; bottom: 1rem; }
+  .card::after { left: calc(1rem - 4px); top: 1.2rem; }
+  .school { font-size: 0.9rem; }
+  .list li { font-size: 0.76rem; }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -193,7 +265,15 @@
 @media (orientation: landscape) and (max-height: 540px) {
   .section { overflow-y: auto; padding-bottom: 0.75rem; }
   .title { font-size: clamp(1.2rem, 5vh, 1.7rem); }
+  .subtitle { font-size: 0.7rem; line-height: 1.45; }
   .header { margin-bottom: 0.5rem; }
   .grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-  .card { padding: 0.55rem 0.7rem; }
+  .card { padding: 0.6rem 0.75rem 0.6rem 1.7rem; border-radius: 14px; }
+  .card::before { left: 0.8rem; top: 1.15rem; bottom: 0.6rem; }
+  .card::after { left: calc(0.8rem - 3px); top: 0.75rem; width: 8px; height: 8px; box-shadow: 0 0 0 3px var(--accent-soft); }
+  .degree { font-size: 0.9rem; }
+  .school { font-size: 0.8rem; }
+  .meta { margin-bottom: 0.5rem; }
+  .list { margin-bottom: 0.5rem; gap: 0.3rem; }
+  .list li { font-size: 0.7rem; line-height: 1.45; }
 }

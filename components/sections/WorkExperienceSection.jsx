@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
 import { useTilt3D } from '@/lib/useMouseParallax'
-import ParallaxPhotoLayers from '@/components/ui/ParallaxPhotoLayers'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/WorkExperienceSection.module.css'
 
@@ -41,8 +41,8 @@ export default function WorkExperienceSection() {
     const tl = gsap.timeline()
     hoverTlsRef.current[i] = tl
     tl.to(ul,  { maxHeight: ul.scrollHeight, duration: 0.5, ease: 'power2.out' }, 0)
-      .to(ul,  { borderLeftColor: 'rgba(247,147,30,0.6)', duration: 0.3 }, 0)
-      .to(dot, { scale: 1.1, boxShadow: '0 0 0 8px rgba(247,147,30,0.12), 0 0 28px rgba(247,147,30,0.22)', duration: 0.3, ease: 'back.out(2)' }, 0)
+      .to(ul,  { borderLeftColor: 'rgba(59,99,224,0.6)', duration: 0.3 }, 0)
+      .to(dot, { scale: 1.1, boxShadow: '0 0 0 8px rgba(122,127,230,0.16), 0 10px 26px rgba(59,99,224,0.22)', duration: 0.3, ease: 'back.out(2)' }, 0)
   }
 
   function handleCardLeave(i) {
@@ -55,8 +55,8 @@ export default function WorkExperienceSection() {
     const tl = gsap.timeline()
     hoverTlsRef.current[i] = tl
     tl.to(ul,  { maxHeight: collapsed, duration: 0.35, ease: 'power2.in' }, 0)
-      .to(ul,  { borderLeftColor: 'rgba(247,147,30,0.2)', duration: 0.25 }, 0)
-      .to(dot, { scale: 1, boxShadow: '0 0 0 6px rgba(247,147,30,0.05), 0 0 22px rgba(247,147,30,0.1)', duration: 0.25, ease: 'power2.in' }, 0)
+      .to(ul,  { borderLeftColor: 'rgba(180,165,238,0.28)', duration: 0.25 }, 0)
+      .to(dot, { scale: 1, boxShadow: '0 0 0 6px rgba(122,127,230,0.08), 0 8px 22px rgba(16,27,45,0.08)', duration: 0.25, ease: 'power2.in' }, 0)
   }
 
   useEffect(() => {
@@ -103,15 +103,16 @@ export default function WorkExperienceSection() {
   return (
     <section ref={sectionRef} className={styles.section} data-snap-index="4">
 
-      <ParallaxPhotoLayers
-        background={{ src: '/assets/photo-bw-dramatic.png', opacity: 0.35, blur: 2, position: 'center 35%', scale: 1.12 }}
-        midground={{ src: '/assets/photo-campus-night.png', opacity: 0.06, position: 'right 20%' }}
-        variant="side"
-      />
+      <AuroraLayer variant="calm" />
 
       <div className={styles.header}>
-        <span className={styles.label}>Work Experience</span>
-        <span className={styles.labelRight}>0{EXPS.length} Roles</span>
+        <div className={styles.headingGroup}>
+          <span className={styles.label}>Work Experience</span>
+          <h2 className={styles.heading}>
+            Where I&apos;ve <em className={styles.headingAccent}>grown</em>
+          </h2>
+        </div>
+        <span className={styles.labelRight}>{String(EXPS.length).padStart(2, '0')} Roles</span>
       </div>
 
       <div ref={cardWrapRef} className={styles.timeline}>

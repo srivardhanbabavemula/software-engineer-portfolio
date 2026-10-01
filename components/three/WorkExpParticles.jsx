@@ -4,7 +4,8 @@ import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
 const COUNT  = 140
-const ACCENT = new THREE.Color(0xf7931e)
+const ACCENT = new THREE.Color(0x9fcbf2)
+const LINK   = new THREE.Color(0xb4a5ee)
 
 export default function WorkExpParticles({ slideIdx }) {
   const mountRef  = useRef(null)
@@ -66,7 +67,7 @@ export default function WorkExpParticles({ slideIdx }) {
     lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3))
     lineGeo.setDrawRange(0, 0)
     const lineMat = new THREE.LineBasicMaterial({
-      color:       ACCENT,
+      color:       LINK,
       transparent: true,
       opacity:     0.07,
     })

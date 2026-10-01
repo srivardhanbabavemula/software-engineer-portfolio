@@ -1,44 +1,82 @@
 @import "tailwindcss";
 
-/* ─── Brand tokens — light professional ─────────────── */
+/* ─── Brand tokens — Calm Aurora ─────────────────────── */
 :root {
-  /* Hero gradient — soft sky & cream */
-  --hero-start: #f8fafc;
-  --hero-mid:   #e8f0fe;
-  --hero-end:   #c7d9f5;
+  /* Canvas — warm ivory & sand */
+  --canvas:      #faf8f4;
+  --canvas-2:    #f3efe7;
+  --canvas-3:    #ebe6dc;
 
-  /* Accent */
-  --accent:       #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-warm:  #f59e0b;
+  /* Ink */
+  --ink:         #101b2d;
+  --ink-soft:    #2a3447;
+  --muted:       #5e6878;
+  --muted-2:     #8a92a0;
+  --line:        rgba(16, 27, 45, 0.08);
+  --line-strong: rgba(16, 27, 45, 0.14);
 
-  /* Text */
-  --text-primary: #0f172a;
-  --text-muted:   #475569;
-  --text-on-dark: #f8fafc;
+  /* Primary — calm professional blue */
+  --accent:       #3b63e0;
+  --accent-hover: #2e50c2;
+  --accent-soft:  rgba(59, 99, 224, 0.10);
+  --accent-glow:  rgba(59, 99, 224, 0.22);
+
+  /* Aurora accents */
+  --sage:      #8fbf9f;
+  --sage-deep: #4f8a6a;
+  --lavender:  #b4a5ee;
+  --sky:       #9fcbf2;
+  --peach:     #f2c6a5;
+  --accent-warm: var(--sage-deep);
+
+  --aurora-text: linear-gradient(115deg, #3b63e0 0%, #7a7fe6 48%, #4f8a6a 100%);
+  --aurora-soft: linear-gradient(135deg, rgba(159, 203, 242, 0.35), rgba(180, 165, 238, 0.28) 50%, rgba(143, 191, 159, 0.3));
+
+  /* Hero gradient (legacy names) */
+  --hero-start: #faf8f4;
+  --hero-mid:   #f1eef8;
+  --hero-end:   #e6eef8;
+
+  /* Text (legacy names) */
+  --text-primary: var(--ink);
+  --text-dark:    var(--ink-soft);
+  --text-muted:   var(--muted);
+  --text-on-dark: #f6f4ef;
 
   /* Surfaces */
   --surface-white: #ffffff;
-  --surface-black: #0f172a;
-  --surface-amber: #f8fafc;
-  --surface-glass: rgba(255, 255, 255, 0.72);
-  --surface-card:  #ffffff;
+  --surface-black: #0f1a2b;
+  --surface-amber: var(--canvas);
+  --surface-glass: rgba(255, 255, 255, 0.58);
+  --surface-card:  rgba(255, 255, 255, 0.72);
+
+  /* Glass */
+  --glass-bg:     rgba(255, 255, 255, 0.58);
+  --glass-strong: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.78);
+  --glass-blur:   18px;
+  --glass-shadow: 0 12px 40px rgba(16, 27, 45, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
   /* Status */
-  --status-available: #16a34a;
-
-  /* Text dark token */
-  --text-dark: #1e293b;
+  --status-available: #3f9a6b;
 
   /* Navbar */
-  --navbar-text:    #0f172a;
+  --navbar-text:    var(--ink);
   --email-btn-bg:   #ffffff;
-  --email-btn-text: #0f172a;
+  --email-btn-text: var(--ink);
 
-  /* 3D depth */
-  --shadow-soft:  0 4px 24px rgba(15, 23, 42, 0.08);
-  --shadow-lift:  0 20px 50px rgba(37, 99, 235, 0.12);
-  --shadow-card:  0 8px 32px rgba(15, 23, 42, 0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+  /* Depth */
+  --shadow-soft: 0 4px 24px rgba(16, 27, 45, 0.06);
+  --shadow-lift: 0 24px 60px rgba(59, 99, 224, 0.14);
+  --shadow-card: var(--glass-shadow);
+
+  /* Shape */
+  --radius-sm:   10px;
+  --radius-card: 20px;
+  --radius-lg:   28px;
+
+  /* Motion */
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Viewport / section height — svh on mobile, dvh elsewhere */
   --section-h: 100vh;
@@ -57,10 +95,10 @@
   --hero-role-size: clamp(0.75rem, 1.2vw, 0.875rem);
 
   /* ─── shadcn var bridge (maps to brand tokens) ── */
-  --background:   var(--surface-white);
-  --foreground:   var(--text-primary);
-  --primary:      var(--text-primary);
-  --primary-foreground: var(--surface-white);
+  --background:   var(--canvas);
+  --foreground:   var(--ink);
+  --primary:      var(--ink);
+  --primary-foreground: #ffffff;
   --ring:         var(--accent);
   --radius:       9999px;
 }
@@ -88,6 +126,17 @@ body {
   background: var(--background);
   color:      var(--foreground);
   font-family: var(--font-geist-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(59, 99, 224, 0.18);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* ─── Hide scrollbar ─────────────────────────────────────── */
@@ -103,6 +152,14 @@ main { scrollbar-width: none; -ms-overflow-style: none; }
   -webkit-overflow-scrolling: touch;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 /* ─── Phone (≤767px) ────────────────────────────────────── */
 @media (max-width: 767px) {
   :root {
@@ -110,6 +167,7 @@ main { scrollbar-width: none; -ms-overflow-style: none; }
     --section-h: 100svh;
     --page-pad-x: clamp(1rem, 4vw, 1.5rem);
     --page-pad-top: clamp(3.75rem, 8vh, 4.5rem);
+    --glass-blur: 12px;
   }
 
   html, body { height: 100svh; }
@@ -136,7 +194,7 @@ main { scrollbar-width: none; -ms-overflow-style: none; }
   :root {
     --section-h: 100dvh;
     --page-pad-x: clamp(0.85rem, 3vw, 1.5rem);
-    --page-pad-top: calc(2.35rem + var(--safe-top));
+    --page-pad-top: calc(3.4rem + var(--safe-top));
     --hero-name-size: clamp(1.5rem, 7vh, 2.6rem);
   }
 

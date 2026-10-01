@@ -1,12 +1,21 @@
-/* ── Section ───────────────────────────────────── */
+/* ── Section — calm aurora ──────────────────────── */
 .section {
+  --night-text:   var(--ink);
+  --night-soft:   var(--ink-soft);
+  --night-muted:  var(--muted);
+  --night-glass:  var(--glass-bg);
+  --night-border: var(--glass-border);
+  --night-grad:   var(--aurora-text);
+
   height: var(--section-h);
-  background: linear-gradient(165deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
+  background: linear-gradient(165deg, var(--canvas) 0%, var(--canvas-2) 55%, var(--canvas) 100%);
+  color: var(--night-text);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
   z-index: 5;
+  isolation: isolate;
 }
 
 .section::before {
@@ -14,60 +23,91 @@
   position: absolute;
   bottom: -0.06em;
   right: -0.04em;
+  font-family: var(--font-display), sans-serif;
   font-size: clamp(5rem, 11vw, 13rem);
-  font-weight: 900;
-  color: rgba(15, 23, 42, 0.04);
+  font-weight: 800;
+  color: rgba(16, 27, 45, 0.035);
   letter-spacing: -0.05em;
   line-height: 1;
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
-}
-
-/* ── Background image ──────────────────────────── */
-.bgImg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.bgImgEl {
-  object-fit: cover;
-  object-position: center 35%;
-  opacity: 0.09;
+  z-index: 1;
 }
 
 /* ── Header ────────────────────────────────────── */
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
+  gap: 1rem;
   padding: clamp(4rem, 7vh, 5rem) clamp(1.5rem, 5vw, 4.5rem) 0;
   flex-shrink: 0;
   position: relative;
   z-index: 2;
 }
 
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
 .label {
+  font-family: var(--font-display), sans-serif;
   font-size: var(--text-small);
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
+.heading {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--night-text);
+  margin: 0;
+}
+
+.headingAccent {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.12em;
+  letter-spacing: -0.01em;
+  background: var(--night-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.06em;
+}
+
 .labelRight {
+  font-family: var(--font-display), sans-serif;
   font-size: var(--text-small);
   font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  font-family: var(--font-geist-mono), monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--night-muted);
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  background: var(--glass-strong);
+  border: 1px solid var(--night-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ── Timeline area ─────────────────────────────── */
 .timeline {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,15 +131,16 @@
   right: 0;
   top: 26px;           /* center of 52px dot */
   height: 2px;
+  border-radius: 2px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--accent) 6%,
-    rgba(37, 99, 235, 0.45) 50%,
-    rgba(37, 99, 235, 0.15) 94%,
+    rgba(59, 99, 224, 0.55) 6%,
+    rgba(122, 127, 230, 0.5) 50%,
+    rgba(79, 138, 106, 0.4) 94%,
     transparent 100%
   );
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 14px rgba(122, 127, 230, 0.18);
   transform-origin: left center;
   pointer-events: none;
   z-index: 0;
@@ -113,12 +154,13 @@
   position: relative;
   z-index: 1;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
   scrollbar-width: thin;
+  scrollbar-color: rgba(180, 165, 238, 0.35) transparent;
 }
 
 .entry {
-  flex: 0 0 clamp(220px, 18vw, 280px);
+  flex: 0 0 clamp(230px, 19vw, 290px);
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -130,8 +172,10 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid var(--accent);
+  background: var(--glass-strong);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(59, 99, 224, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,8 +183,8 @@
   position: relative;
   z-index: 2;
   box-shadow:
-    0 0 0 6px rgba(37, 99, 235, 0.06),
-    0 8px 24px rgba(15, 23, 42, 0.08);
+    0 0 0 6px rgba(122, 127, 230, 0.08),
+    0 8px 22px rgba(16, 27, 45, 0.08);
 }
 
 /* Vertical connector - dot → card */
@@ -150,35 +194,50 @@
   top: calc(100% + 2px);
   left: 50%;
   transform: translateX(-50%);
-  width: 2px;
-  height: clamp(1rem, 2.5vh, 2rem);
-  background: linear-gradient(to bottom, rgba(37, 99, 235, 0.35), transparent);
+  width: 1.5px;
+  height: clamp(0.75rem, 2vh, 1.5rem);
+  background: linear-gradient(to bottom, rgba(180, 165, 238, 0.55), transparent);
 }
 
 .dotNum {
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: var(--accent);
-  font-family: var(--font-geist-mono), monospace;
-  letter-spacing: 0.06em;
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1;
+  background: var(--night-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* ── Card content ───────────────────────────────── */
+/* ── Card content — frosted glass ───────────────── */
 .card {
   width: 100%;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-top: clamp(1rem, 2.5vh, 2rem);
+  margin-top: clamp(0.75rem, 2vh, 1.5rem);
+  padding: clamp(0.9rem, 1.6vh, 1.2rem) clamp(0.9rem, 1.2vw, 1.15rem);
+  background: var(--night-glass);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--night-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-shadow);
+  transition:
+    border-color 0.4s var(--ease-calm),
+    background 0.4s var(--ease-calm),
+    box-shadow 0.4s var(--ease-calm);
 }
 
-.cardHead {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  min-width: 0;
+.entry:hover .card {
+  background: var(--glass-strong);
+  border-color: rgba(122, 127, 230, 0.32);
+  box-shadow:
+    0 24px 56px -18px rgba(16, 27, 45, 0.22),
+    0 0 40px rgba(122, 127, 230, 0.12);
 }
 
 .cardMeta {
@@ -193,58 +252,65 @@
 .period {
   font-size: 0.68rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--night-muted);
   font-family: var(--font-geist-mono), monospace;
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
 .typeTag {
-  font-size: 0.62rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.18);
-  padding: 0.12rem 0.42rem;
-  border-radius: 3px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(59, 99, 224, 0.2);
+  padding: 0.14rem 0.5rem;
+  border-radius: 999px;
   white-space: nowrap;
 }
 
 .location {
   font-size: 0.68rem;
-  color: var(--text-muted);
+  color: var(--night-muted);
   font-weight: 500;
 }
 
 .role {
-  font-size: clamp(1rem, 1.65vw, 1.45rem);
-  font-weight: 900;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   margin: 0;
-  text-transform: uppercase;
+  background: var(--night-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
 .company {
-  font-size: clamp(0.82rem, 1.15vw, 1rem);
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(0.82rem, 1.1vw, 0.98rem);
   font-weight: 600;
-  color: var(--text-primary);
-  margin: 0.2rem 0 0;
+  color: var(--night-text);
+  margin: 0.1rem 0 0;
   line-height: 1.35;
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
 .companySub {
-  font-size: clamp(0.78rem, 1vw, 0.92rem);
-  font-weight: 500;
-  color: var(--text-muted);
-  margin: 0.1rem 0 0;
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.05vw, 0.98rem);
+  font-weight: 400;
+  color: var(--night-soft);
+  margin: 0;
   line-height: 1.3;
 }
 
@@ -256,7 +322,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  border-left: 2px solid rgba(37, 99, 235, 0.2);
+  border-left: 2px solid rgba(180, 165, 238, 0.28);
   min-width: 0;
   overflow: hidden;
   max-height: 5rem; /* GSAP expands on hover */
@@ -264,8 +330,8 @@
 
 .bullet {
   font-size: var(--text-body);
-  line-height: 1.5;
-  color: var(--text-muted);
+  line-height: 1.55;
+  color: var(--night-soft);
   flex-shrink: 0;
 }
 
@@ -273,26 +339,39 @@
 .stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 0.2rem;
+  gap: 5px;
+  margin-top: 0.25rem;
 }
 
 .tag {
   font-size: var(--text-small);
   font-weight: 600;
-  padding: 0.14rem 0.4rem;
-  border-radius: 3px;
-  background: rgba(37, 99, 235, 0.08);
-  color: var(--accent);
-  border: 1px solid rgba(37, 99, 235, 0.18);
-  letter-spacing: 0.04em;
+  padding: 0.16rem 0.55rem;
+  border-radius: 999px;
+  background: var(--glass-strong);
+  color: var(--night-soft);
+  border: 1px solid var(--line);
+  letter-spacing: 0.02em;
   white-space: nowrap;
+  transition: color 0.3s var(--ease-calm), border-color 0.3s var(--ease-calm);
+}
+
+.entry:hover .tag {
+  color: var(--accent);
+  border-color: rgba(59, 99, 224, 0.28);
 }
 
 /* ── Mobile (≤767px) ────────────────────────────── */
 @media (max-width: 767px) {
   .header {
     padding: 3.5rem clamp(1rem, 4vw, 1.5rem) 0;
+  }
+
+  .heading { font-size: 1.35rem; }
+
+  .labelRight {
+    font-size: 0.6rem;
+    padding: 0.28rem 0.65rem;
   }
 
   .timeline {
@@ -308,10 +387,12 @@
 
   .entries {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    overflow-x: visible;
   }
 
   .entry {
+    flex: none;
     flex-direction: row;
     align-items: flex-start;
     gap: 0.75rem;
@@ -324,8 +405,13 @@
   }
 
   .dot::after { display: none; }
+  .dotNum { font-size: 0.92rem; }
 
-  .card { padding-top: 0; }
+  .card {
+    margin-top: 0;
+    padding: 0.85rem 0.9rem;
+    border-radius: 16px;
+  }
 
   .role     { font-size: 1rem; }
   .company  { font-size: 0.88rem; }
@@ -334,9 +420,16 @@
   .stack    { display: none; }
 }
 
+@media (max-width: 374px) {
+  .heading { font-size: 1.2rem; }
+  .labelRight { letter-spacing: 0.12em; }
+}
+
 /* ── Tablet (768–1023px) ────────────────────────── */
 @media (min-width: 768px) and (max-width: 1023px) {
   .timeline {
+    justify-content: flex-start;
+    padding-top: 1.5rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -350,20 +443,30 @@
   .entry {
     flex: none;
     width: 100%;
-    max-width: 28rem;
+    max-width: 34rem;
     flex-direction: row;
     align-items: flex-start;
+    gap: 1rem;
   }
+
+  .dot::after { display: none; }
+  .card { margin-top: 0; }
 
   .snakeLine { display: none; }
   .company { font-size: 1rem; }
-  .role { font-size: 0.95rem; }
+  .role { font-size: 1.05rem; }
 }
 
 @media (orientation: landscape) and (max-height: 540px) {
-  .header { padding-top: var(--page-pad-top); }
-  .timeline { overflow-y: auto; padding-top: 0.5rem; }
-  .entries { flex-direction: column; gap: 0.75rem; }
+  .header { padding-top: var(--page-pad-top); align-items: center; }
+  .heading { display: none; }
+  .timeline { overflow-y: auto; padding-top: 0.5rem; justify-content: flex-start; }
+  .entries { flex-direction: column; gap: 0.75rem; overflow-x: visible; }
+  .entry { flex: none; flex-direction: row; align-items: flex-start; gap: 0.75rem; }
+  .dot { width: 36px; height: 36px; }
+  .dot::after { display: none; }
+  .dotNum { font-size: 0.85rem; }
+  .card { margin-top: 0; padding: 0.6rem 0.8rem; border-radius: 14px; }
   .snakeLine { display: none; }
   .role { font-size: 0.88rem; }
   .bullet { font-size: 0.75rem; }

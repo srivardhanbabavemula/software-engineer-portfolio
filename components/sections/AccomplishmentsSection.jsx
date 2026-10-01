@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
-import ParallaxPhotoLayers from '@/components/ui/ParallaxPhotoLayers'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/AccomplishmentsSection.module.css'
 
@@ -48,15 +48,13 @@ export default function AccomplishmentsSection() {
 
   return (
     <section ref={sectionRef} className={styles.section} data-snap-index="5">
-      <ParallaxPhotoLayers
-        background={{ src: '/assets/photo-bw-dramatic.png', opacity: 0.12, blur: 4, position: 'center 40%' }}
-      />
+      <AuroraLayer variant="warm" />
 
       <div ref={headerRef} className={styles.header}>
         <span className={styles.label}>Leadership · Public Speaking · Awards</span>
         <h2 className={styles.title}>Accomplishments</h2>
         <p className={styles.subtitle}>
-          {ITEMS.length} entries — CSI presidency, technical workshops, Engineers&apos; Day presentations, INSPIRE Award, SSC merit, and community recognition.
+          {`${ITEMS.length} entries — CSI presidency, technical workshops, Engineers' Day presentations, INSPIRE Award, SSC merit, and community recognition.`}
         </p>
       </div>
 

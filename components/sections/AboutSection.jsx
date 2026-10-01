@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from '@/lib/gsap'
 import { useTilt3D } from '@/lib/useMouseParallax'
-import ParallaxPhotoLayers from '@/components/ui/ParallaxPhotoLayers'
+import AuroraLayer from '@/components/ui/AuroraLayer'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { IoLogoTableau } from 'react-icons/io5'
 import profile from '@/data/profile.json'
@@ -89,10 +89,7 @@ export default function AboutSection() {
   return (
     <section ref={sectionRef} className={styles.section} data-snap-index="2">
 
-      <ParallaxPhotoLayers
-        background={{ src: '/assets/photo-bw-dramatic.png', opacity: 0.2, blur: 3, position: 'center 40%' }}
-        variant="side"
-      />
+      <AuroraLayer variant="calm" />
 
       {/* ── Left: photo + signature + socials ───────── */}
       <div ref={photoRef} className={styles.photoCol}>
@@ -136,8 +133,8 @@ export default function AboutSection() {
           <div className={styles.marqueeTrack}>
             {[...WHO_ITEMS, ...WHO_ITEMS].map((item, i) => (
               <span key={i} className={styles.marqueeItem}>
+                <span className={styles.marqueeDot} aria-hidden />
                 {item}
-                <span className={styles.marqueeDot}>·</span>
               </span>
             ))}
           </div>
