@@ -474,7 +474,8 @@
   .photo       { width: 56%; }
   .orb         { width: min(60vw, 70vh); }
   .photoInner  { width: min(38vw, 44vh); margin-top: -8vh; }
-  .cardsCol    { left: 46%; top: 66vh; width: clamp(190px, 22vw, 250px); }
+  .cardsCol    { left: auto; right: 7vw; top: auto; bottom: 5vh; width: clamp(220px, 34vw, 290px); }
+  .taglineCard { display: none; }
   .socialSidebar { width: 2.4rem; }
   .name        { white-space: normal; }
 }

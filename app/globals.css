@@ -194,7 +194,7 @@ main { scrollbar-width: none; -ms-overflow-style: none; }
   :root {
     --section-h: 100dvh;
     --page-pad-x: clamp(0.85rem, 3vw, 1.5rem);
-    --page-pad-top: calc(2.35rem + var(--safe-top));
+    --page-pad-top: calc(3.4rem + var(--safe-top));
     --hero-name-size: clamp(1.5rem, 7vh, 2.6rem);
   }
 

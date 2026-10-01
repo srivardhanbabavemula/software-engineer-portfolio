@@ -32,7 +32,6 @@ function getLocalTime() {
 export default function Navbar() {
   const [time,    setTime]    = useState('')
   const [onIntro, setOnIntro] = useState(true)
-  const [onDark,  setOnDark]  = useState(false)
   const [activeIdx, setActiveIdx] = useState(SECTION.VIDEO)
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef   = useRef(null)
@@ -82,8 +81,6 @@ export default function Navbar() {
       const sectionIdx = getNavActiveIdx(currentY, getIdxFromScrollTop(currentY, vh), vh)
       setActiveIdx(sectionIdx)
       setOnIntro(currentY < vh * 0.8)
-      setOnDark(sectionIdx === SECTION.EXPERIENCE)
-
       if (delta > 8 && !hidden.current) {
         gsap.to(headerRef.current, { y: '-140%', duration: 0.35, ease: 'power2.inOut' })
         hidden.current = true
@@ -112,7 +109,6 @@ export default function Navbar() {
   const headerClass = [
     styles.header,
     onIntro && !menuOpen ? styles.introMode : '',
-    onDark && !menuOpen ? styles.darkMode : '',
     menuOpen ? styles.menuOpen : '',
   ].filter(Boolean).join(' ')
 

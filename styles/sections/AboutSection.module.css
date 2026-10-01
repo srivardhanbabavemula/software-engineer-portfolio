@@ -331,6 +331,10 @@
   .signature  { font-size: 4rem; }
 }
 
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .signature  { font-size: 4.2rem; right: -2.5rem; }
+}
+
 @media (orientation: landscape) and (max-height: 540px) {
   .section {
     grid-template-columns: minmax(0, 34%) minmax(0, 66%);

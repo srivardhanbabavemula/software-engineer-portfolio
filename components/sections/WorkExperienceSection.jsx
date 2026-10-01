@@ -41,8 +41,8 @@ export default function WorkExperienceSection() {
     const tl = gsap.timeline()
     hoverTlsRef.current[i] = tl
     tl.to(ul,  { maxHeight: ul.scrollHeight, duration: 0.5, ease: 'power2.out' }, 0)
-      .to(ul,  { borderLeftColor: 'rgba(159,203,242,0.7)', duration: 0.3 }, 0)
-      .to(dot, { scale: 1.1, boxShadow: '0 0 0 8px rgba(122,127,230,0.18), 0 0 28px rgba(159,203,242,0.35)', duration: 0.3, ease: 'back.out(2)' }, 0)
+      .to(ul,  { borderLeftColor: 'rgba(59,99,224,0.6)', duration: 0.3 }, 0)
+      .to(dot, { scale: 1.1, boxShadow: '0 0 0 8px rgba(122,127,230,0.16), 0 10px 26px rgba(59,99,224,0.22)', duration: 0.3, ease: 'back.out(2)' }, 0)
   }
 
   function handleCardLeave(i) {
@@ -56,7 +56,7 @@ export default function WorkExperienceSection() {
     hoverTlsRef.current[i] = tl
     tl.to(ul,  { maxHeight: collapsed, duration: 0.35, ease: 'power2.in' }, 0)
       .to(ul,  { borderLeftColor: 'rgba(180,165,238,0.28)', duration: 0.25 }, 0)
-      .to(dot, { scale: 1, boxShadow: '0 0 0 6px rgba(122,127,230,0.10), 0 0 22px rgba(159,203,242,0.16)', duration: 0.25, ease: 'power2.in' }, 0)
+      .to(dot, { scale: 1, boxShadow: '0 0 0 6px rgba(122,127,230,0.08), 0 8px 22px rgba(16,27,45,0.08)', duration: 0.25, ease: 'power2.in' }, 0)
   }
 
   useEffect(() => {
@@ -103,7 +103,7 @@ export default function WorkExperienceSection() {
   return (
     <section ref={sectionRef} className={styles.section} data-snap-index="4">
 
-      <AuroraLayer variant="night" />
+      <AuroraLayer variant="calm" />
 
       <div className={styles.header}>
         <div className={styles.headingGroup}>

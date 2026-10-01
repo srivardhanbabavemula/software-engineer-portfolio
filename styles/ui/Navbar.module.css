@@ -198,50 +198,6 @@
   border-color: transparent;
 }
 
-/* ── Dark section mode (Work Experience only) ────── */
-.darkMode {
-  --navbar-text: var(--text-on-dark);
-  color: var(--text-on-dark);
-  background: rgba(15, 26, 43, 0.55);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.darkMode .time { color: rgba(246, 244, 239, 0.62); }
-
-.darkMode .navLink {
-  color: rgba(246, 244, 239, 0.86);
-}
-
-.darkMode .navLink:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.darkMode .navLinkActive,
-.darkMode .navLinkActive:hover {
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent) 0%, #5a73e8 100%);
-}
-
-.darkMode .emailBtn,
-.darkMode .hamburger {
-  color: var(--text-on-dark);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.darkMode .emailBtn:hover,
-.darkMode .hamburger:hover {
-  color: #fff;
-  border-color: rgba(180, 165, 238, 0.6);
-}
-
-.darkMode .emailBtnPrimary {
-  background: linear-gradient(135deg, var(--accent) 0%, #5a73e8 100%);
-  border-color: transparent;
-}
-
 /* ── Menu-open: bar blends into the sheet ─────────── */
 .menuOpen {
   background: transparent;

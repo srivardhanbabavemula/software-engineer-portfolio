@@ -1145,6 +1145,13 @@
 }
 
 /* ── Tablet ───────────────────────────────────────────── */
+@media (max-width: 767px) and (max-height: 620px) {
+  .mobileLayout     { gap: 0.55rem; padding-bottom: calc(4.5rem + var(--safe-bottom)); }
+  .mobileName       { font-size: clamp(1.9rem, 10vw, 2.4rem); }
+  .mobileDesc       { display: none; }
+  .mobileScrollHint { display: none; }
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .pubHero      { padding: clamp(4.25rem, 8vh, 5rem) clamp(2rem, 5vw, 5rem) 0; }
   .divider      { margin: clamp(0.8rem, 2vh, 1.5rem) clamp(2rem, 5vw, 5rem) 0; }
