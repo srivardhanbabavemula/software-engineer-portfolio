@@ -53,7 +53,7 @@
     "availability": "Open to Relocate Anywhere in the USA"
   },
   "available": true,
-  "bio": "Software Engineer with 3+ years of experience progressing from Python/SQL application development into backend services, cloud-connected workflows, data systems, and AI-enabled software. Strong in Python, Java, C++, SQL, REST APIs, Flask, FastAPI, PySpark, Kafka, Airflow, Snowflake, AWS, Azure, Docker, CI/CD, debugging, performance optimization, and testing. Delivered production workflows with 99.8% uptime, 40% throughput gains, 60% faster distributed processing, and deep-learning inference latency reduced from 580ms to 378ms. Currently a Graduate Research Assistant in Software Engineering & Data Systems at the UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science). Open to relocate anywhere in the USA.",
+  "bio": "Software Engineer with 3+ years of experience progressing from Python/SQL application development into backend services, cloud-connected workflows, data systems, and AI-enabled software. Strong in Python, Java, C++, SQL, REST APIs, Flask, FastAPI, PySpark, Kafka, Airflow, Snowflake, AWS, Azure, Docker, CI/CD, debugging, performance optimization, and testing. Delivered production workflows with 99.8% uptime, 40% throughput gains, 60% faster distributed processing, and deep-learning inference latency reduced from 580ms to 378ms. Currently a Graduate Research Assistant at the UB Media Forensic Lab. Open to relocate anywhere in the USA.",
   "education": [
     {
       "id": 1,
@@ -65,7 +65,7 @@
       "location": "Buffalo, New York, United States",
       "highlights": [
         "Pursuing graduate studies in data science with focus on machine learning, statistical modeling, and large-scale analytics.",
-        "Graduate Research Assistant — Software Engineering & Data Systems at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow).",
+        "Graduate Research Assistant at the UB Media Forensic Lab.",
         "Building Python ETL and data-processing components, Flask inference APIs, PySpark workflows, and MLflow experiment tracking for deepfake detection research."
       ],
       "coursework": [
@@ -377,7 +377,25 @@
         "PySpark",
         "Hadoop",
         "Distributed Systems",
-        "Sterling File Gateway"
+        "Sterling File Gateway",
+        "Azure Blob Storage",
+        "Apache Spark",
+        "Spark Structured Streaming",
+        "Databricks"
+      ]
+    },
+    {
+      "title": "Cloud Infrastructure & DevOps",
+      "items": [
+        "Terraform",
+        "CloudFormation",
+        "Ansible",
+        "Kubernetes",
+        "Helm",
+        "Argo CD",
+        "Prometheus",
+        "Grafana",
+        "OpenTelemetry"
       ]
     },
     {
@@ -391,7 +409,13 @@
         "Parquet",
         "Data Curation",
         "Database Design",
-        "Query Optimization"
+        "Query Optimization",
+        "Data Pipelines",
+        "Data Integration",
+        "Data Validation",
+        "Data Quality",
+        "Dimensional Modeling",
+        "CTEs & Window Functions"
       ]
     },
     {
@@ -402,7 +426,24 @@
         "Microsoft SQL Server",
         "Snowflake",
         "Google BigQuery",
-        "Indexing"
+        "Indexing",
+        "Azure SQL",
+        "Redis"
+      ]
+    },
+    {
+      "title": "Data Analysis & Visualization",
+      "items": [
+        "Exploratory Data Analysis",
+        "Statistical Analysis",
+        "Hypothesis Testing",
+        "Data Cleaning",
+        "Matplotlib",
+        "Tableau",
+        "Power BI",
+        "Excel",
+        "Dashboarding",
+        "Reporting"
       ]
     },
     {
@@ -420,7 +461,13 @@
         "Computer Vision",
         "Model Evaluation",
         "MLflow",
-        "NLP"
+        "NLP",
+        "Deep Learning",
+        "Clustering",
+        "Predictive Modeling",
+        "Model Serving",
+        "Experiment Tracking",
+        "Evaluation Pipelines"
       ]
     },
     {
@@ -434,7 +481,14 @@
         "LlamaIndex",
         "Generative AI",
         "Structured Outputs",
-        "AI Output Validation"
+        "AI Output Validation",
+        "LangGraph",
+        "Embeddings",
+        "Vector Search",
+        "FAISS",
+        "Tool/Function Calling",
+        "Agentic AI",
+        "LLM Evaluation"
       ]
     },
     {
@@ -447,9 +501,7 @@
         "PagerDuty",
         "Monitoring",
         "Logging",
-        "Production Testing",
-        "Tableau",
-        "Power BI"
+        "Production Testing"
       ]
     }
   ],
@@ -486,38 +538,65 @@
     "OpenAI API",
     "Tableau",
     "Power BI",
-    "Pytest"
+    "Pytest",
+    "Kubernetes",
+    "Terraform",
+    "Databricks",
+    "LangGraph",
+    "Vector Search"
   ],
   "experience": [
     {
       "id": 1,
-      "role": "Graduate Research Assistant — Software Engineering & Data Systems",
+      "role": "Graduate Research Assistant",
       "company": "UB Media Forensic Lab",
-      "companySub": "University at Buffalo · Advisor: Prof. Siwei Lyu, IEEE Fellow",
+      "companySub": "University at Buffalo",
       "companyShort": "UB MDFL",
       "type": "Research",
       "location": "Buffalo, NY",
       "period": "Jan 2026",
       "periodEnd": "Present",
       "bullets": [
-        "Developed Python data-processing and ETL components for 50K+ multimodal records in AWS S3, reducing preprocessing errors by 45% and improving downstream data readiness.",
-        "Built and optimized distributed PySpark workflows for large-scale multimodal ML processing, reducing computation time by 60% through efficient partitioning and joins.",
-        "Developed Flask REST APIs for deep-learning inference, reducing latency from 580ms to 378ms and increasing inference throughput by 28%.",
-        "Evaluated 5+ deep-learning architectures using standardized training and validation workflows, improving synthetic-media classification F1-score by 12%.",
-        "Implemented MLflow experiment tracking across 10+ model configurations, reducing validation effort by 30% and improving experiment comparison."
+        "Engineered Python data-processing and ETL workflows for 50K+ multimodal records stored in AWS S3, reducing preprocessing errors by 45% and improving the reliability of downstream ML evaluation.",
+        "Tuned distributed PySpark pipelines for large-scale multimodal feature processing, reducing computation time by 60% through partitioning and join optimization.",
+        "Deployed Flask REST APIs for deep-learning model inference and serving, reducing latency from 580ms to 378ms and increasing inference throughput by 28%.",
+        "Evaluated and benchmarked 5+ deep-learning architectures through standardized training, validation, and model-comparison workflows, improving synthetic-media classification F1-score by 12%.",
+        "Streamlined MLflow experiment tracking and model comparison across 10+ configurations, reducing validation effort by 30%.",
+        "Standardized data preparation and validation workflows across model architectures, enabling consistent, reproducible downstream analysis."
       ],
-      "desc": "Software engineering and data systems research at UB Media Forensic Lab under Prof. Siwei Lyu (IEEE Fellow, Director — UB Institute for AI & Data Science).",
+      "desc": "Software engineering, data systems, and ML engineering research at the UB Media Forensic Lab, focused on deepfake and synthetic-media detection.",
       "tech": [
         "Python",
-        "Flask",
-        "FastAPI",
         "PySpark",
         "AWS S3",
+        "Flask",
+        "FastAPI",
+        "REST APIs",
         "MLflow",
         "PyTorch",
         "TensorFlow",
-        "REST APIs",
+        "Deep Learning",
+        "Computer Vision",
+        "Model Serving",
         "ETL"
+      ],
+      "metrics": [
+        {
+          "value": "45%",
+          "label": "fewer preprocessing errors"
+        },
+        {
+          "value": "60%",
+          "label": "faster distributed processing"
+        },
+        {
+          "value": "378ms",
+          "label": "inference latency (from 580ms)"
+        },
+        {
+          "value": "+12%",
+          "label": "classification F1-score"
+        }
       ]
     },
     {
@@ -578,13 +657,13 @@
       "period": "Sep 2024",
       "periodEnd": "Jul 2025",
       "bullets": [
-        "Engineered Python-based AWS S3 and SFTP data workflows processing 200+ files daily, increasing throughput by 40% and eliminating 15+ hours of manual processing per week.",
-        "Integrated Sterling File Gateway with 5+ enterprise systems, implementing validation, exception routing, and reliable file-handling workflows that reduced cross-system errors by 35%.",
-        "Built monitoring and recovery workflows using AWS CloudWatch, PagerDuty, and Airflow across 12+ production workflows, maintaining 99.8% uptime and reducing incident resolution time by 25%.",
-        "Optimized 20+ SQL queries using CTEs and window functions and redesigned 4 database schemas, reducing query latency by 30% and storage overhead by 20%.",
-        "Implemented regression testing and deployment checks across 15+ workflows, reducing post-release defects by 40%."
+        "Automated Python ETL and file-ingestion workflows connecting AWS S3, SFTP, and enterprise systems, processing 200+ files daily, increasing throughput by 40%, and eliminating ~15 hours/week of manual processing.",
+        "Integrated Sterling File Gateway with 5+ enterprise systems, adding validation, exception routing, and reliable file-handling paths that reduced cross-system errors by 35%.",
+        "Established monitoring and recovery with AWS CloudWatch, PagerDuty, and Airflow across 12+ production workflows, maintaining 99.8% uptime and reducing incident resolution time by 25%.",
+        "Refactored 20+ SQL queries using CTEs and window functions and redesigned 4 relational schemas, decreasing query latency by 30% and storage overhead by 20%.",
+        "Instituted automated regression tests and deployment checks across 15+ data pipelines, cutting post-release defects by 40%."
       ],
-      "desc": "Senior software engineering for backend, cloud ingestion, enterprise integration, monitoring, and production reliability.",
+      "desc": "Backend, cloud, and integration engineering for enterprise file ingestion, data pipelines, monitoring, and production reliability.",
       "tech": [
         "Python",
         "AWS S3",
@@ -594,7 +673,27 @@
         "CloudWatch",
         "PagerDuty",
         "Airflow",
+        "ETL",
+        "Regression Testing",
         "CI/CD"
+      ],
+      "metrics": [
+        {
+          "value": "200+",
+          "label": "files processed daily"
+        },
+        {
+          "value": "40%",
+          "label": "higher throughput"
+        },
+        {
+          "value": "99.8%",
+          "label": "production uptime"
+        },
+        {
+          "value": "40%",
+          "label": "fewer post-release defects"
+        }
       ]
     },
     {
@@ -607,21 +706,46 @@
       "period": "Aug 2022",
       "periodEnd": "Aug 2024",
       "bullets": [
-        "Developed Python and SQL applications processing 500K+ records across 10+ data sources, improving execution time by 45% through optimized transformations.",
-        "Designed and optimized relational database schemas and indexing strategies across 8 datasets, achieving 60% faster query performance for enterprise clients.",
+        "Created Python/SQL applications handling 500K+ records across 10+ data sources, accelerating execution by 45% through vectorized transformations.",
+        "Restructured relational schemas and indexing strategies for 8 datasets, achieving 60% faster queries across 3 enterprise clients.",
         "Delivered 15+ client applications, dashboards, and reporting interfaces using Python, SQL, Tableau, and Power BI, translating requirements into reusable software components.",
-        "Implemented application-level validation and error-recovery workflows across 2M+ records, maintaining 99.5% data accuracy.",
-        "Debugged and optimized Python and SQL workflows across client applications, improving reliability, performance, and maintainability."
+        "Strengthened data-processing applications with validation and error recovery, maintaining 99.5% accuracy across 2M+ records.",
+        "Orchestrated cloud infrastructure provisioning and application deployments using Terraform, Docker, and Ansible, standardizing environment configuration across client workloads.",
+        "Conducted predictive analytics with Python and Scikit-Learn, using feature engineering and model evaluation to identify patterns and support data-driven decisions.",
+        "Diagnosed and resolved production issues across client-facing Python applications, applying targeted debugging and error-handling improvements to strengthen reliability."
       ],
-      "desc": "Python applications, database design, dashboards, and production software for enterprise clients.",
+      "desc": "Python applications, data systems, database design, cloud deployments, and reporting for enterprise clients.",
       "tech": [
         "Python",
         "SQL",
         "PostgreSQL",
+        "Pandas",
+        "NumPy",
+        "Scikit-Learn",
+        "Terraform",
+        "Docker",
+        "Ansible",
         "Tableau",
         "Power BI",
-        "Pandas",
         "ETL"
+      ],
+      "metrics": [
+        {
+          "value": "500K+",
+          "label": "records processed"
+        },
+        {
+          "value": "45%",
+          "label": "faster execution"
+        },
+        {
+          "value": "60%",
+          "label": "faster queries"
+        },
+        {
+          "value": "99.5%",
+          "label": "accuracy across 2M+ records"
+        }
       ]
     },
     {
@@ -726,22 +850,6 @@
       "bgImage": "/assets/projects/bg/forecasting-bg.png"
     },
     {
-      "id": 103,
-      "title": "Deepfake Detection Research",
-      "subtitle": "Computer Vision",
-      "type": "Research",
-      "link": "https://zinc.cse.buffalo.edu/ubmdfl/deep-o-meter/",
-      "image": "/assets/projects/deep-o-meter.png",
-      "context": "Deep learning classification models for synthetic media detection under Prof. Siwei Lyu.",
-      "tech": [
-        "PyTorch",
-        "TensorFlow",
-        "Computer Vision"
-      ],
-      "desc": "Developed deep learning classification models for synthetic media detection using feature extraction and model evaluation techniques; evaluated 5+ architectures and improved classification F1-score by 12%.",
-      "bgImage": "/assets/projects/bg/deep-o-meter-bg.png"
-    },
-    {
       "id": 104,
       "title": "Azure Cloud Data Warehouse",
       "subtitle": "ADF · Snowflake · SQL",
@@ -759,12 +867,12 @@
     },
     {
       "id": 1,
-      "title": "Deep-O-Meter",
+      "title": "Deepfake-O-Meter",
       "subtitle": "Deepfake Detection Platform",
       "type": "Research",
       "link": "https://zinc.cse.buffalo.edu/ubmdfl/deep-o-meter/",
       "image": "/assets/projects/deep-o-meter.png",
-      "context": "Live research at the Institute for Artificial Intelligence and Data Science, UB — Flask/FastAPI APIs, PySpark ETL, and MLflow model versioning under Prof. Siwei Lyu.",
+      "context": "Live research at the Institute for Artificial Intelligence and Data Science, UB — Flask/FastAPI APIs, PySpark ETL, and MLflow model versioning.",
       "tech": [
         "Flask",
         "FastAPI",

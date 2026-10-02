@@ -4,7 +4,6 @@ import { useRef } from 'react'
 import { gsap } from '@/lib/gsap'
 import AuroraLayer from '@/components/ui/AuroraLayer'
 import profile from '@/data/profile.json'
-import content from '@/data/content.json'
 import styles from '@/styles/sections/ScreenLoader.module.css'
 
 export default function ScreenLoader({ onDismiss }) {
@@ -97,8 +96,6 @@ export default function ScreenLoader({ onDismiss }) {
       <AuroraLayer variant="hero" />
 
       <div className={styles.inner}>
-        <p className={styles.eyebrow}>{content.site.tagline}</p>
-
         <p className={styles.monogram}>
           <span className={styles.nameLine}>{profile.name.first}</span>
           {profile.name.middle && (

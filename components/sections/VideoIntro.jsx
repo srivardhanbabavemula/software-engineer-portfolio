@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { gsap } from '@/lib/gsap'
 import profile from '@/data/profile.json'
-import content from '@/data/content.json'
 import styles from '@/styles/sections/VideoIntro.module.css'
 
 const CinematicLayer = dynamic(() => import('@/components/three/CinematicLayer'), { ssr: false })
@@ -18,7 +17,6 @@ function scrollNext() {
 
 export default function VideoIntro() {
   const videoRef    = useRef(null)
-  const greetRef    = useRef(null)
   const nameRef     = useRef(null)
   const roleRef     = useRef(null)
   const scrollRef   = useRef(null)
@@ -35,8 +33,7 @@ export default function VideoIntro() {
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.4 })
-    tl.fromTo(greetRef.current,  { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-      .fromTo(nameRef.current,   { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.2')
+    tl.fromTo(nameRef.current,   { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' })
       .fromTo(roleRef.current,   { opacity: 0, y:  20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
       .fromTo(scrollRef.current, { opacity: 0 },         { opacity: 1, duration: 0.5 }, '-=0.1')
     return () => tl.kill()
@@ -139,10 +136,6 @@ export default function VideoIntro() {
       <div className={styles.bottomFade} aria-hidden />
 
       <div className={styles.heroContent}>
-        <p ref={greetRef} className={styles.eyebrow}>
-          <span className={styles.eyebrowLine} aria-hidden />
-          {content.site.tagline}
-        </p>
         <h1 ref={nameRef} className={styles.name}>
           <span className={styles.nameLine}>{profile.name.first}</span>
           <span className={styles.nameMiddle}>{profile.name.middle}</span>

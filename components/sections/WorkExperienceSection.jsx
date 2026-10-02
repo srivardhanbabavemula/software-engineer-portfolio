@@ -1,13 +1,17 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { FiArrowUpRight } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
 import { useTilt3D } from '@/lib/useMouseParallax'
 import AuroraLayer from '@/components/ui/AuroraLayer'
+import ExperienceDetailModal from '@/components/ui/ExperienceDetailModal'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/WorkExperienceSection.module.css'
 
 const EXPS = profile.experience
+const HOVER_DELAY = 650
+const PREVIEW_TAGS = 3
 
 export default function WorkExperienceSection() {
   const sectionRef        = useRef(null)
@@ -16,48 +20,56 @@ export default function WorkExperienceSection() {
   const dotRefs           = useRef([])
   const cardRefs          = useRef([])
   const tlRef             = useRef(null)
-  const bulletListRefs    = useRef([])
-  const collapsedHeights  = useRef([])
-  const hoverTlsRef       = useRef([])
+  const hoverTimer        = useRef(null)
+  const cooldownUntil     = useRef(0)
+  const progressRefs      = useRef([])
+
+  const [active, setActive] = useState(null)
 
   useTilt3D(cardWrapRef, 4)
 
-  // Capture each bullet list's natural collapsed height after first paint
-  useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      bulletListRefs.current.forEach((ul, i) => {
-        if (ul) collapsedHeights.current[i] = ul.clientHeight
-      })
-    })
-    return () => cancelAnimationFrame(id)
+  const canHover = () =>
+    typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+  function openDetail(i, hoverMode = false) {
+    clearTimeout(hoverTimer.current)
+    const card = cardRefs.current[i]
+    const r = card?.getBoundingClientRect()
+    setActive({ index: i, hoverMode, originRect: r ? { left: r.left, top: r.top, width: r.width, height: r.height } : null })
+  }
+
+  const closeDetail = useCallback(() => {
+    cooldownUntil.current = Date.now() + 700
+    setActive(null)
+  }, [])
+
+  const navigateDetail = useCallback((i) => {
+    setActive(a => (a ? { ...a, index: i, hoverMode: false } : a))
   }, [])
 
   function handleCardEnter(i) {
-    if (typeof window !== 'undefined' && window.innerWidth < 768) return
-    const ul  = bulletListRefs.current[i]
     const dot = dotRefs.current[i]
-    if (!ul) return
-    hoverTlsRef.current[i]?.kill()
-    const tl = gsap.timeline()
-    hoverTlsRef.current[i] = tl
-    tl.to(ul,  { maxHeight: ul.scrollHeight, duration: 0.5, ease: 'power2.out' }, 0)
-      .to(ul,  { borderLeftColor: 'rgba(59,99,224,0.6)', duration: 0.3 }, 0)
-      .to(dot, { scale: 1.1, boxShadow: '0 0 0 8px rgba(122,127,230,0.16), 0 10px 26px rgba(59,99,224,0.22)', duration: 0.3, ease: 'back.out(2)' }, 0)
+    if (dot) gsap.to(dot, { scale: 1.1, boxShadow: '0 0 0 8px rgba(122,127,230,0.16), 0 10px 26px rgba(59,99,224,0.22)', duration: 0.3, ease: 'back.out(2)' })
+    if (!canHover() || active || Date.now() < cooldownUntil.current) return
+    const bar = progressRefs.current[i]
+    if (bar) gsap.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: HOVER_DELAY / 1000, ease: 'none' })
+    clearTimeout(hoverTimer.current)
+    hoverTimer.current = setTimeout(() => openDetail(i, true), HOVER_DELAY)
   }
 
   function handleCardLeave(i) {
-    if (typeof window !== 'undefined' && window.innerWidth < 768) return
-    const ul  = bulletListRefs.current[i]
+    clearTimeout(hoverTimer.current)
     const dot = dotRefs.current[i]
-    if (!ul) return
-    hoverTlsRef.current[i]?.kill()
-    const collapsed = collapsedHeights.current[i] ?? 80
-    const tl = gsap.timeline()
-    hoverTlsRef.current[i] = tl
-    tl.to(ul,  { maxHeight: collapsed, duration: 0.35, ease: 'power2.in' }, 0)
-      .to(ul,  { borderLeftColor: 'rgba(180,165,238,0.28)', duration: 0.25 }, 0)
-      .to(dot, { scale: 1, boxShadow: '0 0 0 6px rgba(122,127,230,0.08), 0 8px 22px rgba(16,27,45,0.08)', duration: 0.25, ease: 'power2.in' }, 0)
+    if (dot) gsap.to(dot, { scale: 1, boxShadow: '0 0 0 6px rgba(122,127,230,0.08), 0 8px 22px rgba(16,27,45,0.08)', duration: 0.25, ease: 'power2.in' })
+    const bar = progressRefs.current[i]
+    if (bar) gsap.to(bar, { scaleX: 0, duration: 0.2, ease: 'power2.out' })
   }
+
+  function handleCardKey(e, i) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(i) }
+  }
+
+  useEffect(() => () => clearTimeout(hoverTimer.current), [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -140,7 +152,13 @@ export default function WorkExperienceSection() {
 
                 <div
                   ref={el => { cardRefs.current[i] = el }}
-                  className={styles.card}
+                  className={`${styles.card} ${active?.index === i ? styles.cardActive : ''}`}
+                  role="button"
+                  tabIndex={0}
+                  aria-haspopup="dialog"
+                  aria-label={`${exp.role} at ${exp.company} — view full details`}
+                  onClick={() => openDetail(i)}
+                  onKeyDown={e => handleCardKey(e, i)}
                 >
                   <h2 className={styles.role}>{exp.role}</h2>
                   <p className={styles.company}>{exp.company}</p>
@@ -152,19 +170,23 @@ export default function WorkExperienceSection() {
                     <span className={styles.typeTag}>{exp.type}</span>
                     {exp.location && <span className={styles.location}>{exp.location}</span>}
                   </div>
-                  <ul
-                    ref={el => { bulletListRefs.current[i] = el }}
-                    className={styles.bullets}
-                  >
-                    {exp.bullets.map((b, bi) => (
-                      <li key={bi} className={styles.bullet}>{b}</li>
-                    ))}
-                  </ul>
+                  <p className={styles.summary}>{exp.desc || exp.bullets[0]}</p>
                   <div className={styles.stack}>
-                    {exp.tech.map(t => (
+                    {exp.tech.slice(0, PREVIEW_TAGS).map(t => (
                       <span key={t} className={styles.tag}>{t}</span>
                     ))}
+                    {exp.tech.length > PREVIEW_TAGS && (
+                      <span className={`${styles.tag} ${styles.tagMore}`}>+{exp.tech.length - PREVIEW_TAGS}</span>
+                    )}
                   </div>
+                  <span className={styles.viewMore}>
+                    View details · {exp.bullets.length} highlights <FiArrowUpRight size={13} />
+                  </span>
+                  <span
+                    ref={el => { progressRefs.current[i] = el }}
+                    className={styles.hoverProgress}
+                    aria-hidden="true"
+                  />
                 </div>
 
               </div>
@@ -173,6 +195,15 @@ export default function WorkExperienceSection() {
 
         </div>
       </div>
+
+      <ExperienceDetailModal
+        exps={EXPS}
+        index={active?.index ?? null}
+        originRect={active?.originRect ?? null}
+        hoverMode={active?.hoverMode ?? false}
+        onClose={closeDetail}
+        onNavigate={navigateDetail}
+      />
 
     </section>
   )
